@@ -1,0 +1,21 @@
+# данные (не коммитим сам датасет)
+CamVid/
+*.zip
+
+# веса и выводы обучения
+outputs/
+*.pt
+*.pth
+checkpoint-*/
+
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# служебное
+.DS_Store
+wandb/
+runs/
