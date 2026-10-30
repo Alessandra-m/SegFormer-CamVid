@@ -8,3 +8,4 @@ pillow
 matplotlib
 scipy
 tqdm
+segmentation-models-pytorch>=0.3

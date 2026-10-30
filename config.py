@@ -2,37 +2,55 @@ from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent
 
-
 DATA_ROOT = Path("/home/magic/work_task/data/CamVid")
 SPLIT_DIRS = {
     "train": ("train", "trainannot"),
-    "val":   ("val",   "valannot"),
-    "test":  ("test",  "testannot"),
+    "val": ("val", "valannot"),
+    "test": ("test", "testannot"),
 }
 CLASS_DICT_CSV = DATA_ROOT / "class_palette.csv"
-LABEL_SUFFIX = "_L"   
-MASK_MODE = "rgb"         
+LABEL_SUFFIX = "_L"
+MASK_MODE = "rgb"
 IGNORE_CLASS_NAME = "unlabelled"
-
 IGNORE_INDEX = 255
+NATIVE_SIZE = (360, 480)
 
+CHECKPOINT = "nvidia/segformer-b0-finetuned-cityscapes-1024-1024"
+HEAD_INIT_FROM = {
+    "Sky": "sky",
+    "Building": "building",
+    "Pole": "pole",
+    "Road": "road",
+    "Sidewalk": "sidewalk",
+    "Tree": "vegetation",
+    "SignSymbol": "traffic sign",
+    "Fence": "fence",
+    "Car": "car",
+    "Pedestrian": "person",
+    "Bicyclist": "rider",
+}
 
-CHECKPOINT = "nvidia/mit-b0"
-
-IMAGE_SIZE = 512
-
-LEARNING_RATE = 6e-5
-NUM_EPOCHS = 50
-TRAIN_BATCH_SIZE = 4
-EVAL_BATCH_SIZE = 4
-NUM_WORKERS = 4
-SEED = 42
-
-OUTPUT_DIR = PROJECT_DIR / "outputs" / "segformer-b0-camvid"
-
+SHORT_SIDE = 512
+EVAL_SIZE = (SHORT_SIDE, round(SHORT_SIDE * NATIVE_SIZE[1] / NATIVE_SIZE[0]))
+CROP_SIZE = 512
+SCALE_RANGE = (0.5, 2.0)
 COLOR_JITTER = dict(brightness=0.25, contrast=0.25, saturation=0.25, hue=0.1)
 HFLIP_PROB = 0.5
 
+LEARNING_RATE = 6e-5
+HEAD_LR_MULT = 10
+WEIGHT_DECAY = 0.01
+WARMUP_STEPS = 300
+LOSS = "ce_lovasz"
+NUM_EPOCHS = 100
+TRAIN_BATCH_SIZE = 4
+EVAL_BATCH_SIZE = 4
+NUM_WORKERS = 4
+FP16 = True
+SEED = 42
+
+OUTPUTS_DIR = PROJECT_DIR / "outputs"
+RUN_NAME = "b0_cityscapes_512"
+OUTPUT_DIR = OUTPUTS_DIR / RUN_NAME
 N_BEST = 3
 N_WORST = 3
-VIS_DIR = PROJECT_DIR / "outputs" / "predictions"   
