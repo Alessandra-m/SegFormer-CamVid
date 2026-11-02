@@ -378,5 +378,5 @@ residual-потока связана со всеми слоями стадии. 
   mIoU, accuracy, IoU по классам для val и test), `results/train_log.json` (история
   обучения), `results/metrics_old.json`, `results/metrics_hires*.json` (сравнительные
   конфигурации), логи в `logs/`, примеры в `results/predictions/`.
-- **Профилирование** — [REPORT_profiling.md](REPORT_profiling.md), таблицы в `results/perf/`,
+- **Профилирование** — [PROFILING.md](PROFILING.md), таблицы в `results/perf/`,
   профили в `results/profile/*/summary.md`.
