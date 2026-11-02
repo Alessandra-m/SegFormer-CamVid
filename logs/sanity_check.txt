@@ -6,17 +6,17 @@ mask colors: 10, not in palette: 0
 train ids in mask: [0, 1, 2, 3, 4, 5, 6, 8, 9, 255]
 ignored pixels (255): 4.62%
 
-train sample (random scale (0.5, 2.0) + crop 512):
-  pixel_values: (3, 512, 512)
-  labels      : (512, 512) unique: [0, 1, 2, 3, 4, 5, 6, 8, 9, 255]
+train sample (random scale (0.5, 2.0) + crop 360):
+  pixel_values: (3, 360, 360)
+  labels      : (360, 360) unique: [0, 1, 2, 3, 4, 5, 6, 8, 9, 255]
 
 eval sample (image resized, labels kept at native size):
-  pixel_values: (3, 512, 683) torch.float32
+  pixel_values: (3, 360, 480) torch.float32
   labels      : (360, 480) torch.int64
   unique labels: [0, 1, 2, 3, 4, 5, 6, 8, 9, 255]
 Classifier initialized from nvidia/segformer-b0-finetuned-cityscapes-1024-1024 classes: {'Sky': 'sky', 'Building': 'building', 'Pole': 'pole', 'Road': 'road', 'Sidewalk': 'sidewalk', 'Tree': 'vegetation', 'SignSymbol': 'traffic sign', 'Fence': 'fence', 'Car': 'car', 'Pedestrian': 'person', 'Bicyclist': 'rider'}
 
-model logits: (1, 11, 128, 171) (H/4 x W/4, not full size)
+model logits: (1, 11, 90, 120) (H/4 x W/4, not full size)
 after upsampling: (360, 480) = image size (360, 480)
 
 OK: image/mask processing and prediction resizing work as expected.

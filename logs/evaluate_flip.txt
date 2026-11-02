@@ -1,4 +1,5 @@
-model: /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512 | input: 512x683 | flip TTA: True
+Loading weights:   0%|          | 0/208 [00:00<?, ?it/s]Loading weights: 100%|██████████| 208/208 [00:00<00:00, 11146.37it/s]
+model: outputs/b0_cityscapes_360_e50 | input: 360x480 | flip TTA: True
   val: 50/101 processed
   val: 100/101 processed
   test: 50/233 processed
@@ -7,26 +8,26 @@ model: /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_51
   test: 200/233 processed
 
 === val (101 images, 360x480) ===
-mIoU            : 0.8020
-mean accuracy   : 0.8657
-overall accuracy: 0.9601
+mIoU            : 0.7805
+mean accuracy   : 0.8480
+overall accuracy: 0.9565
 
 === test (233 images, 360x480) ===
-mIoU            : 0.7297
-mean accuracy   : 0.8102
-overall accuracy: 0.9343
+mIoU            : 0.7014
+mean accuracy   : 0.7970
+overall accuracy: 0.9246
 
 per-class IoU        val     test
-    Sky              0.9434  0.9220
-    Building         0.9245  0.8665
-    Pole             0.1891  0.3378
-    Road             0.9764  0.9634
-    Sidewalk         0.9050  0.8711
-    Tree             0.9204  0.7996
-    SignSymbol       0.7298  0.5335
-    Fence            0.7759  0.5219
-    Car              0.9038  0.9209
-    Pedestrian       0.6940  0.6505
-    Bicyclist        0.8592  0.6395
+    Sky              0.9433  0.9175
+    Building         0.9205  0.8506
+    Pole             0.1518  0.3062
+    Road             0.9738  0.9542
+    Sidewalk         0.8905  0.8447
+    Tree             0.9221  0.7821
+    SignSymbol       0.6410  0.5035
+    Fence            0.7371  0.4568
+    Car              0.8887  0.8922
+    Pedestrian       0.6747  0.6027
+    Bicyclist        0.8418  0.6054
 
-Examples saved to /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512/predictions_flip (best_*.png, worst_*.png)
+Examples saved to outputs/b0_cityscapes_360_e50/predictions_flip (best_*.png, worst_*.png)

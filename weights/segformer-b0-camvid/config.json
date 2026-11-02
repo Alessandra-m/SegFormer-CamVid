@@ -1,5 +1,4 @@
 {
-  "_name_or_path": "/home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512/checkpoint-8280",
   "architectures": [
     "SegformerForSemanticSegmentation"
   ],
@@ -19,6 +18,7 @@
     16
   ],
   "drop_path_rate": 0.1,
+  "dtype": "float32",
   "hidden_act": "gelu",
   "hidden_dropout_prob": 0.0,
   "hidden_sizes": [
@@ -91,6 +91,5 @@
     2,
     2
   ],
-  "torch_dtype": "float32",
-  "transformers_version": "4.46.3"
+  "transformers_version": "5.22.1"
 }

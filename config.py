@@ -31,9 +31,9 @@ HEAD_INIT_FROM = {
     "Bicyclist": "rider",
 }
 
-SHORT_SIDE = 512
+SHORT_SIDE = 360
 EVAL_SIZE = (SHORT_SIDE, round(SHORT_SIDE * NATIVE_SIZE[1] / NATIVE_SIZE[0]))
-CROP_SIZE = 512
+CROP_SIZE = 360
 SCALE_RANGE = (0.5, 2.0)
 COLOR_JITTER = dict(brightness=0.25, contrast=0.25, saturation=0.25, hue=0.1)
 HFLIP_PROB = 0.5
@@ -43,14 +43,14 @@ HEAD_LR_MULT = 10
 WEIGHT_DECAY = 0.01
 WARMUP_STEPS = 300
 LOSS = "ce_lovasz"
-NUM_EPOCHS = 100
+NUM_EPOCHS = 50
 TRAIN_BATCH_SIZE = 4
 EVAL_BATCH_SIZE = 4
 NUM_WORKERS = 4
 FP16 = True
 SEED = 42
 
-RUN_NAME = "b0_cityscapes_512"
+RUN_NAME = "b0_cityscapes_360_e50"
 TRAIN_AUG = "scale_crop"
 
 EXPERIMENT = os.environ.get("EXP", "main")
@@ -62,17 +62,14 @@ if EXPERIMENT == "old":
     LOSS = "ce"
     HEAD_LR_MULT = 1
     WARMUP_STEPS = 0
-    NUM_EPOCHS = 50
     RUN_NAME = "b0_mitb0_old"
-elif EXPERIMENT == "imagenet":
-    CHECKPOINT = "nvidia/mit-b0"
-    HEAD_INIT_FROM = {}
-    RUN_NAME = "b0_mitb0_imagenet"
-elif EXPERIMENT == "short":
-    NUM_EPOCHS = 25
-    RUN_NAME = "b0_cityscapes_512_e25"
+elif EXPERIMENT == "hires":
+    SHORT_SIDE = 512
+    CROP_SIZE = 512
+    EVAL_SIZE = (SHORT_SIDE, round(SHORT_SIDE * NATIVE_SIZE[1] / NATIVE_SIZE[0]))
+    RUN_NAME = "b0_cityscapes_512_e50"
 elif EXPERIMENT != "main":
-    raise ValueError(f"Unknown EXP={EXPERIMENT!r}, expected main | short | old | imagenet")
+    raise ValueError(f"Unknown EXP={EXPERIMENT!r}, expected main | hires | old")
 
 OUTPUTS_DIR = PROJECT_DIR / "outputs"
 OUTPUT_DIR = OUTPUTS_DIR / RUN_NAME
