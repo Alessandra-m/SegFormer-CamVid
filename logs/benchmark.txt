@@ -1,0 +1,37 @@
+test: 233 images loaded in 2 s
+environment: {"python": "3.14.4", "torch": "2.14.1+cu130", "cuda": "13.0", "cudnn": 92400, "gpu": "NVIDIA GeForce RTX 3050", "gpu_mem_GB": 7.7, "transformers": "5.22.1"}
+Loading weights:   0%|          | 0/208 [00:00<?, ?it/s]Loading weights: 100%|██████████| 208/208 [00:00<00:00, 11568.50it/s]
+W1102 11:18:11.535000 57866 torch/_inductor/utils.py:1806] [1/0] Not enough SMs to use max_autotune_gemm mode
+
+[SegFormer-B0 360x480] preprocessed 233 images in 0 s
+  fp32          lat    7.34 ms (p90 7.41) | 172.0 fps b=8 | mem 97 MB | mIoU 0.6912
+  tf32          lat    7.05 ms (p90 7.37) | 177.4 fps b=8 | mem 97 MB | mIoU 0.6912
+  fp16          lat    7.94 ms (p90 8.00) | 234.7 fps b=8 | mem 115 MB | mIoU 0.6912
+  bf16          lat    7.79 ms (p90 7.85) | 230.2 fps b=8 | mem 115 MB | mIoU 0.6912
+  half          lat    5.79 ms (p90 5.94) | 319.9 fps b=8 | mem 50 MB | mIoU 0.6913
+  fp16+compile  lat    3.44 ms (p90 3.92) | 305.6 fps b=8 | mem — MB | mIoU 0.6912
+
+[DeepLabV3-ResNet50 360x480] preprocessed 233 images in 0 s
+  fp32          lat   38.23 ms (p90 40.09) | 26.8 fps b=8 | mem 77 MB | mIoU 0.6952
+  tf32          lat   38.24 ms (p90 39.04) | 27.7 fps b=8 | mem 77 MB | mIoU 0.6952
+  fp16          lat   21.93 ms (p90 21.98) | 53.6 fps b=8 | mem 50 MB | mIoU 0.6952
+  bf16          lat   22.10 ms (p90 22.16) | 53.4 fps b=8 | mem 50 MB | mIoU 0.6954
+  half          lat   20.81 ms (p90 20.84) | 54.5 fps b=8 | mem 40 MB | mIoU 0.6951
+  fp16+compile  lat   15.80 ms (p90 15.93) | 64.9 fps b=8 | mem — MB | mIoU 0.6952
+
+| Model | Input | Variant | mIoU test | Δ mIoU | Latency b=1, ms (median / p90) | Speedup | FPS, b=8 | Memory b=1, MB (weights + activations) | Params, M | GMACs |
+|---|---|---|---|---|---|---|---|---|---|---|
+| SegFormer-B0 | 360x480 | fp32 | 0.6912 | +0.0000 | 7.34 / 7.41 | ×1.00 | 172.0 | 112 (14 + 97) | 3.72 | 4.9 |
+| SegFormer-B0 | 360x480 | tf32 | 0.6912 | -0.0000 | 7.05 / 7.37 | ×1.04 | 177.4 | 112 (14 + 97) | 3.72 | 4.9 |
+| SegFormer-B0 | 360x480 | fp16 | 0.6912 | +0.0000 | 7.94 / 8.00 | ×0.93 | 234.7 | 129 (14 + 115) | 3.72 | 4.9 |
+| SegFormer-B0 | 360x480 | bf16 | 0.6912 | -0.0000 | 7.79 / 7.85 | ×0.94 | 230.2 | 129 (14 + 115) | 3.72 | 4.9 |
+| SegFormer-B0 | 360x480 | half | 0.6913 | +0.0000 | 5.79 / 5.94 | ×1.27 | 319.9 | 57 (7 + 50) | 3.72 | 4.9 |
+| SegFormer-B0 | 360x480 | fp16+compile | 0.6912 | +0.0000 | 3.44 / 3.92 | ×2.14 | 305.6 | — | 3.72 | 4.9 |
+| DeepLabV3-ResNet50 | 360x480 | fp32 | 0.6952 | +0.0000 | 38.23 / 40.09 | ×1.00 | 26.8 | 228 (151 + 77) | 39.64 | 107.8 |
+| DeepLabV3-ResNet50 | 360x480 | tf32 | 0.6952 | +0.0000 | 38.24 / 39.04 | ×1.00 | 27.7 | 228 (151 + 77) | 39.64 | 107.8 |
+| DeepLabV3-ResNet50 | 360x480 | fp16 | 0.6952 | -0.0000 | 21.93 / 21.98 | ×1.74 | 53.6 | 201 (151 + 50) | 39.64 | 107.8 |
+| DeepLabV3-ResNet50 | 360x480 | bf16 | 0.6954 | +0.0002 | 22.10 / 22.16 | ×1.73 | 53.4 | 201 (151 + 50) | 39.64 | 107.8 |
+| DeepLabV3-ResNet50 | 360x480 | half | 0.6951 | -0.0001 | 20.81 / 20.84 | ×1.84 | 54.5 | 116 (76 + 40) | 39.64 | 107.8 |
+| DeepLabV3-ResNet50 | 360x480 | fp16+compile | 0.6952 | -0.0000 | 15.80 / 15.93 | ×2.42 | 64.9 | — | 39.64 | 107.8 |
+
+Saved: /home/magic/work_task/segformer-camvid/results/perf/benchmark.json, /home/magic/work_task/segformer-camvid/results/perf/benchmark.md

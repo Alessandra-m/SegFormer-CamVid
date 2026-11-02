@@ -1,0 +1,258 @@
+{
+  "model": "SegFormer-B0",
+  "input": "360x480",
+  "variant": "half",
+  "batch": 1,
+  "env": {
+    "python": "3.14.4",
+    "torch": "2.14.1+cu130",
+    "cuda": "13.0",
+    "cudnn": 92400,
+    "gpu": "NVIDIA GeForce RTX 3050",
+    "gpu_mem_GB": 7.7,
+    "transformers": "5.22.1"
+  },
+  "latency_ms": 5.759056091308594,
+  "latency": {
+    "median_ms": 5.759056091308594,
+    "p90_ms": 5.808230304718018,
+    "min_ms": 5.421023845672607,
+    "std_ms": 0.04150895206399881
+  },
+  "kernel_ms_per_forward": 4.023917350000033,
+  "gpu_busy": 0.6987112620890803,
+  "verdict": "partly launch-bound: noticeable GPU idle gaps",
+  "kernels_per_forward": 232.0,
+  "avg_kernel_us": 17.34447133620704,
+  "cpu_ms_per_forward": 4.5712568500000375,
+  "cuda_api_ms_per_forward": 1.0543983999999849,
+  "top_ops": [
+    {
+      "op": "aten::cudnn_convolution",
+      "calls_per_forward": 20.0,
+      "self_gpu_us_per_forward": 772.8824500000077,
+      "share": 0.19207214830095884
+    },
+    {
+      "op": "aten::native_layer_norm",
+      "calls_per_forward": 30.0,
+      "self_gpu_us_per_forward": 729.4853000000119,
+      "share": 0.18128734676918895
+    },
+    {
+      "op": "aten::upsample_bilinear2d",
+      "calls_per_forward": 5.0,
+      "self_gpu_us_per_forward": 564.0560000000065,
+      "share": 0.1401758413353102
+    },
+    {
+      "op": "aten::copy_",
+      "calls_per_forward": 30.0,
+      "self_gpu_us_per_forward": 541.1148000000021,
+      "share": 0.13447463079727462
+    },
+    {
+      "op": "aten::addmm",
+      "calls_per_forward": 40.0,
+      "self_gpu_us_per_forward": 284.85915000000045,
+      "share": 0.07079150122206115
+    },
+    {
+      "op": "aten::add_",
+      "calls_per_forward": 31.0,
+      "self_gpu_us_per_forward": 261.4143000000096,
+      "share": 0.06496512658243525
+    },
+    {
+      "op": "aten::mm",
+      "calls_per_forward": 12.0,
+      "self_gpu_us_per_forward": 218.746750000002,
+      "share": 0.05436164090199323
+    },
+    {
+      "op": "aten::cat",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 215.71000000000203,
+      "share": 0.05360696585877944
+    },
+    {
+      "op": "aten::_flash_attention_forward",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 159.20370000000406,
+      "share": 0.039564356360351875
+    },
+    {
+      "op": "aten::gelu",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 97.97984999999683,
+      "share": 0.024349369402429703
+    },
+    {
+      "op": "aten::native_batch_norm",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 64.1093000000008,
+      "share": 0.01593206182527588
+    },
+    {
+      "op": "aten::add",
+      "calls_per_forward": 16.0,
+      "self_gpu_us_per_forward": 60.01309999998925,
+      "share": 0.014914098571132123
+    },
+    {
+      "op": "aten::clamp_min",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 54.34265000000023,
+      "share": 0.013504912072808798
+    }
+  ],
+  "categories_us": {
+    "attention (SDPA)": 159.20370000000406,
+    "matmul / linear (addmm, mm, bmm)": 503.60590000000246,
+    "convolution": 772.8824500000077,
+    "softmax": 0.0,
+    "normalization (LayerNorm, BatchNorm)": 793.5946000000126,
+    "activation (GELU, ReLU)": 152.32249999999706,
+    "interpolate / pooling": 564.0560000000065,
+    "copy / layout (contiguous, cat, cast)": 756.8248000000042,
+    "elementwise (add, mul, div)": 321.42739999999884,
+    "other": 0.0
+  },
+  "other_ops_us": {},
+  "parts_ms": {
+    "stage1.patch_embed": 0.14670016050338744,
+    "stage1.attention.sr_conv+norm": 0.14709376007318498,
+    "stage1.attention": 0.26802048057317734,
+    "stage1.mix_ffn": 0.440299519598484,
+    "stage1": 1.3442150378227233,
+    "stage2.patch_embed": 0.06263488061726093,
+    "stage2.attention.sr_conv+norm": 0.191564799323678,
+    "stage2.attention": 0.5245952026546001,
+    "stage2.mix_ffn": 0.38222783952951433,
+    "stage2": 1.264190720319748,
+    "stage3.patch_embed": 0.13093503981828689,
+    "stage3.attention.sr_conv+norm": 0.29273408055305483,
+    "stage3.attention": 0.7907046395540237,
+    "stage3.mix_ffn": 0.3975129592418671,
+    "stage3": 1.6713740754127502,
+    "stage4.patch_embed": 0.13317823976278306,
+    "stage4.attention": 0.39652735948562623,
+    "stage4.mix_ffn": 0.41619008153676984,
+    "stage4": 1.2957638335227966,
+    "decode_head.linear_c1": 0.13753727942705155,
+    "decode_head.linear_c2": 0.03398975983262062,
+    "decode_head.linear_c3": 0.01786752011626959,
+    "decode_head.linear_c4": 0.012557440064847469,
+    "decode_head.linear_fuse": 0.32778303921222685,
+    "decode_head.classifier": 0.03991551995277405,
+    "decode_head": 1.6490131139755249,
+    "total": 7.47759934425354,
+    "other_top_level": 0.25304256319999663
+  },
+  "parts_order": [
+    [
+      "stage1",
+      0
+    ],
+    [
+      "stage1.patch_embed",
+      1
+    ],
+    [
+      "stage1.attention",
+      1
+    ],
+    [
+      "stage1.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage1.mix_ffn",
+      1
+    ],
+    [
+      "stage2",
+      0
+    ],
+    [
+      "stage2.patch_embed",
+      1
+    ],
+    [
+      "stage2.attention",
+      1
+    ],
+    [
+      "stage2.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage2.mix_ffn",
+      1
+    ],
+    [
+      "stage3",
+      0
+    ],
+    [
+      "stage3.patch_embed",
+      1
+    ],
+    [
+      "stage3.attention",
+      1
+    ],
+    [
+      "stage3.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage3.mix_ffn",
+      1
+    ],
+    [
+      "stage4",
+      0
+    ],
+    [
+      "stage4.patch_embed",
+      1
+    ],
+    [
+      "stage4.attention",
+      1
+    ],
+    [
+      "stage4.mix_ffn",
+      1
+    ],
+    [
+      "decode_head",
+      0
+    ],
+    [
+      "decode_head.linear_c1",
+      1
+    ],
+    [
+      "decode_head.linear_c2",
+      1
+    ],
+    [
+      "decode_head.linear_c3",
+      1
+    ],
+    [
+      "decode_head.linear_c4",
+      1
+    ],
+    [
+      "decode_head.linear_fuse",
+      1
+    ],
+    [
+      "decode_head.classifier",
+      1
+    ]
+  ]
+}

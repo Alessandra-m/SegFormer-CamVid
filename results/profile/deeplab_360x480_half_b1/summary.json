@@ -1,0 +1,147 @@
+{
+  "model": "DeepLabV3-ResNet50",
+  "input": "360x480",
+  "variant": "half",
+  "batch": 1,
+  "env": {
+    "python": "3.14.4",
+    "torch": "2.14.1+cu130",
+    "cuda": "13.0",
+    "cudnn": 92400,
+    "gpu": "NVIDIA GeForce RTX 3050",
+    "gpu_mem_GB": 7.7,
+    "transformers": "5.22.1"
+  },
+  "latency_ms": 20.64639949798584,
+  "latency": {
+    "median_ms": 20.64639949798584,
+    "p90_ms": 20.689747047424316,
+    "min_ms": 20.57923126220703,
+    "std_ms": 0.03331127403371997
+  },
+  "kernel_ms_per_forward": 20.565884749999977,
+  "gpu_busy": 0.9961003007815616,
+  "verdict": "GPU-bound: kernels run almost back to back",
+  "kernels_per_forward": 397.0,
+  "avg_kernel_us": 51.80323614609566,
+  "cpu_ms_per_forward": 4.890813749999991,
+  "cuda_api_ms_per_forward": 4.573747100000059,
+  "top_ops": [
+    {
+      "op": "aten::cudnn_convolution",
+      "calls_per_forward": 61.0,
+      "self_gpu_us_per_forward": 15007.473949999989,
+      "share": 0.7297266386752462
+    },
+    {
+      "op": "aten::native_batch_norm",
+      "calls_per_forward": 60.0,
+      "self_gpu_us_per_forward": 2286.7373000000357,
+      "share": 0.11119080592922405
+    },
+    {
+      "op": "aten::add_",
+      "calls_per_forward": 17.0,
+      "self_gpu_us_per_forward": 1384.817949999992,
+      "share": 0.06733568561887393
+    },
+    {
+      "op": "aten::clamp_min_",
+      "calls_per_forward": 49.0,
+      "self_gpu_us_per_forward": 1380.5478499999986,
+      "share": 0.06712805535876595
+    },
+    {
+      "op": "aten::copy_",
+      "calls_per_forward": 60.0,
+      "self_gpu_us_per_forward": 145.29879999996075,
+      "share": 0.007065040078081781
+    },
+    {
+      "op": "aten::upsample_bilinear2d",
+      "calls_per_forward": 2.0,
+      "self_gpu_us_per_forward": 79.85490000000136,
+      "share": 0.0038828818196115517
+    },
+    {
+      "op": "aten::clamp_min",
+      "calls_per_forward": 7.0,
+      "self_gpu_us_per_forward": 78.8277499999931,
+      "share": 0.003832937457261264
+    },
+    {
+      "op": "aten::max_pool2d_with_indices",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 72.63590000000181,
+      "share": 0.003531863612140582
+    },
+    {
+      "op": "aten::cat",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 67.64675000000224,
+      "share": 0.0032892701102977023
+    },
+    {
+      "op": "aten::mean",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 62.04359999999961,
+      "share": 0.0030168213404968966
+    }
+  ],
+  "categories_us": {
+    "attention (SDPA)": 0.0,
+    "matmul / linear (addmm, mm, bmm)": 0.0,
+    "convolution": 15007.473949999989,
+    "softmax": 0.0,
+    "normalization (LayerNorm, BatchNorm)": 2286.7373000000357,
+    "activation (GELU, ReLU)": 1459.3755999999917,
+    "interpolate / pooling": 152.49080000000316,
+    "copy / layout (contiguous, cat, cast)": 212.945549999963,
+    "elementwise (add, mul, div)": 1384.817949999992,
+    "other": 62.04359999999961
+  },
+  "other_ops_us": {
+    "aten::mean": 62.04359999999961
+  },
+  "parts_ms": {
+    "stem (conv1+bn+relu+maxpool)": 0.3898188811540604,
+    "layer1": 1.4151782417297363,
+    "layer2": 1.4769548892974853,
+    "layer3": 4.657198095321656,
+    "layer4": 6.775669717788697,
+    "ASPP": 5.590332136154175,
+    "head (conv3x3+bn+relu+conv1x1)": 0.28064512014389037,
+    "total": 20.63530559539795,
+    "other_top_level": 0.04950851380824872
+  },
+  "parts_order": [
+    [
+      "stem (conv1+bn+relu+maxpool)",
+      0
+    ],
+    [
+      "layer1",
+      0
+    ],
+    [
+      "layer2",
+      0
+    ],
+    [
+      "layer3",
+      0
+    ],
+    [
+      "layer4",
+      0
+    ],
+    [
+      "ASPP",
+      0
+    ],
+    [
+      "head (conv3x3+bn+relu+conv1x1)",
+      0
+    ]
+  ]
+}

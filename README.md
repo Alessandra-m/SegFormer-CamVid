@@ -77,11 +77,15 @@ SegFormer-CamVid/
 ├── evaluate_model.py    # mIoU на val/test в исходном разрешении, IoU по классам, лучшие/худшие кадры
 ├── predict.py           # инференс на одном изображении + оверлей маски
 ├── sanity_check.py      # проверка обработки картинок/масок и восстановления размера
+├── perf_models.py       # профилирование: загрузка SegFormer и DeepLabV3, режимы точности, замеры
+├── benchmark.py         # сводная таблица скорости, памяти и mIoU -> results/perf/
+├── profile_models.py    # PyTorch Profiler, разбивка по операциям и частям модели -> results/profile/
+├── REPORT_profiling.md  # отчёт о профилировании SegFormer-B0 и DeepLabV3
 ├── tests/
 │   └── test_mask_mapping.py   # синтетический тест конвертации масок (numpy, без torch)
 ├── weights/
 │   └── segformer-b0-camvid/   # веса итоговой модели (config + safetensors + processor)
-├── results/             # metrics*.json, train_log.json, примеры предсказаний
+├── results/             # metrics*.json, train_log.json, примеры предсказаний, perf/, profile/
 ├── logs/                # логи обучения, оценки и sanity_check
 └── outputs/             # не в git: рабочие папки обучения с чекпоинтами
 ```
@@ -330,7 +334,36 @@ python3 predict.py <DATA_ROOT>/test/0001TP_008550.png pred.png --model weights/s
 
 ---
 
-## 8. Результат работы
+## 8. Профилирование
+
+Подробный отчёт — **[REPORT_profiling.md](REPORT_profiling.md)**: задержка, пропускная
+способность, память и узкие места обеих моделей в режимах fp32 / tf32 / fp16 / bf16 / half /
+`torch.compile`, профиль по операциям и по частям модели.
+
+Главное (RTX 3050, вход 360×480, batch 1):
+
+| | SegFormer-B0 | DeepLabV3-ResNet50 |
+|---|---|---|
+| mIoU test | 0.691 | 0.695 |
+| GMACs | 4.9 | 107.8 |
+| Задержка fp32 | 7.3 мс | 38.2 мс |
+| Задержка, лучший режим (`fp16+compile`) | 3.4 мс | 15.8 мс |
+| Память (веса + активации), fp32 | 112 МБ | 228 МБ |
+| Узкое место | декодер и операции с памятью; в fp16 — запуск ядер | свёртки layer4 и ASPP |
+
+SegFormer-B0 в 5 раз быстрее при практически той же точности. `autocast` его не ускоряет
+(GPU простаивает в ожидании запуска коротких ядер), а `torch.compile` с CUDA Graphs ускоряет
+в 2.1 раза. Смена точности не меняет mIoU ни у одной модели.
+
+Главный кандидат на прунинг трансформера — ширина декодера: одна свёртка 1×1 `linear_fuse` даёт
+57 % MACs модели. Следующий — внутренние каналы Mix-FFN (43 % параметров). Головы внимания можно
+удалять только целиком (`head_dim` = 32 фиксирован), а в stage1 голова одна. Ширина
+residual-потока связана со всеми слоями стадии. Подробности и план экспериментов — в разделах
+6–7 отчёта.
+
+---
+
+## 9. Результат работы
 
 - **Код** дообучения (`train.py`) и инференса/оценки (`evaluate_model.py`, `predict.py`).
 - **Веса** итоговой модели (`EXP=main`, лучший чекпоинт, эпоха 29) — в репозитории,
@@ -345,3 +378,5 @@ python3 predict.py <DATA_ROOT>/test/0001TP_008550.png pred.png --model weights/s
   mIoU, accuracy, IoU по классам для val и test), `results/train_log.json` (история
   обучения), `results/metrics_old.json`, `results/metrics_hires*.json` (сравнительные
   конфигурации), логи в `logs/`, примеры в `results/predictions/`.
+- **Профилирование** — [REPORT_profiling.md](REPORT_profiling.md), таблицы в `results/perf/`,
+  профили в `results/profile/*/summary.md`.

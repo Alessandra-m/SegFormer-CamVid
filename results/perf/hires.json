@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "env": {
+      "python": "3.14.4",
+      "torch": "2.14.1+cu130",
+      "cuda": "13.0",
+      "cudnn": 92400,
+      "gpu": "NVIDIA GeForce RTX 3050",
+      "gpu_mem_GB": 7.7,
+      "transformers": "5.22.1"
+    },
+    "args": {
+      "segformer": "outputs/b0_cityscapes_512_e50",
+      "deeplab_repo": "/home/magic/work_task/Fine_Tuning_DeepLabV3_ResNet50",
+      "deeplab_ckpt": "/home/magic/work_task/Fine_Tuning_DeepLabV3_ResNet50/runs/full_ce_lovasz_e50/best.pt",
+      "models": "['segformer']",
+      "sizes": "['512x683']",
+      "variants": "['fp32', 'fp16', 'half', 'fp16+compile']",
+      "batch": "8",
+      "warmup": "30",
+      "iters": "200",
+      "miou": "True",
+      "split": "test",
+      "tag": "hires"
+    },
+    "notes": "latency: batch 1, median over iters runs after warmup, CUDA events + synchronize on every iteration; memory: peak allocated increase per forward (activations and temporary buffers), weights reported separately; not measurable with CUDA Graphs"
+  },
+  "rows": [
+    {
+      "model": "SegFormer-B0",
+      "input": "512x683",
+      "variant": "fp32",
+      "variant_info": "fp32, PyTorch defaults (cuDNN convolutions in TF32, matmul in fp32)",
+      "params_M": 3.716971,
+      "gmacs": 10.900533248,
+      "weights_MB": 14.181079864501953,
+      "miou": 0.7127497280116765,
+      "iou_per_class": [
+        0.9151837208960771,
+        0.8599098494835924,
+        0.3245348906121072,
+        0.9560349061101358,
+        0.8546137141504844,
+        0.7918425781052553,
+        0.5190518308862551,
+        0.5531083317189003,
+        0.8906479093913786,
+        0.5994031568611746,
+        0.575916119913082
+      ],
+      "pixel_acc": 0.9284720993820685,
+      "latency_b1": {
+        "median_ms": 16.309760093688965,
+        "p90_ms": 16.4136962890625,
+        "min_ms": 16.03379249572754,
+        "std_ms": 0.08063739785354612
+      },
+      "memory_b1_MB": 201.2021484375,
+      "throughput_fps": 78.05809153302205,
+      "memory_b8_MB": 1587.185546875,
+      "speedup": 1.0,
+      "delta_miou": 0.0
+    },
+    {
+      "model": "SegFormer-B0",
+      "input": "512x683",
+      "variant": "fp16",
+      "variant_info": "torch.autocast(float16), fp32 weights",
+      "params_M": 3.716971,
+      "gmacs": 10.900533248,
+      "weights_MB": 14.181079864501953,
+      "miou": 0.712720228240523,
+      "iou_per_class": [
+        0.9151996402849759,
+        0.8599210592927763,
+        0.3244983898934853,
+        0.9559881347618374,
+        0.8545179125100981,
+        0.7918691324017315,
+        0.5190407862407862,
+        0.5530178082678705,
+        0.8906012125902535,
+        0.5991892749437326,
+        0.576079159458205
+      ],
+      "pixel_acc": 0.9284621301207104,
+      "latency_b1": {
+        "median_ms": 11.452928066253662,
+        "p90_ms": 11.556146812438964,
+        "min_ms": 11.243488311767578,
+        "std_ms": 0.08114288871455207
+      },
+      "memory_b1_MB": 233.13671875,
+      "throughput_fps": 118.61213664807343,
+      "memory_b8_MB": 1842.71875,
+      "speedup": 1.424069024038148,
+      "delta_miou": -2.9499771153518317e-05
+    },
+    {
+      "model": "SegFormer-B0",
+      "input": "512x683",
+      "variant": "half",
+      "variant_info": "model.half(): fp16 weights and activations",
+      "params_M": 3.716971,
+      "gmacs": 10.900533248,
+      "weights_MB": 7.090543746948242,
+      "miou": 0.7127038932398319,
+      "iou_per_class": [
+        0.9152053431498951,
+        0.8599172107008258,
+        0.3244908533666813,
+        0.9559824946096575,
+        0.8544885545914311,
+        0.791858497229817,
+        0.5190134435710088,
+        0.5529183813138271,
+        0.8905831098204264,
+        0.5992175891186162,
+        0.5760673481659652
+      ],
+      "pixel_acc": 0.9284583593638237,
+      "latency_b1": {
+        "median_ms": 8.128512382507324,
+        "p90_ms": 8.2139102935791,
+        "min_ms": 8.10086441040039,
+        "std_ms": 0.04030728093249338
+      },
+      "memory_b1_MB": 98.787109375,
+      "throughput_fps": 163.3286018148575,
+      "memory_b8_MB": 793.4296875,
+      "speedup": 2.0064876974030086,
+      "delta_miou": -4.58347718446106e-05
+    },
+    {
+      "model": "SegFormer-B0",
+      "input": "512x683",
+      "variant": "fp16+compile",
+      "variant_info": "autocast(float16) + torch.compile(mode='reduce-overhead', CUDA Graphs)",
+      "params_M": 3.716971,
+      "gmacs": 10.900533248,
+      "weights_MB": 14.181079864501953,
+      "miou": 0.7127184895915942,
+      "iou_per_class": [
+        0.9152012354783143,
+        0.8599194930577014,
+        0.3245031200323401,
+        0.955993456214275,
+        0.8545332523932833,
+        0.791859983489707,
+        0.5190124718670454,
+        0.5529746119994028,
+        0.8906332744990257,
+        0.5992307099177329,
+        0.5760417765587087
+      ],
+      "pixel_acc": 0.9284640413262558,
+      "latency_b1": {
+        "median_ms": 6.313376188278198,
+        "p90_ms": 6.439116716384888,
+        "min_ms": 6.288383960723877,
+        "std_ms": 0.05942746002473421
+      },
+      "memory_b1_MB": null,
+      "throughput_fps": 133.35374661437024,
+      "memory_b8_MB": null,
+      "speedup": 2.583365794671109,
+      "delta_miou": -3.123842008223576e-05
+    }
+  ]
+}

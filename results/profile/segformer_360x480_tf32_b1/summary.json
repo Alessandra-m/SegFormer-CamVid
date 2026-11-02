@@ -1,0 +1,270 @@
+{
+  "model": "SegFormer-B0",
+  "input": "360x480",
+  "variant": "tf32",
+  "batch": 1,
+  "env": {
+    "python": "3.14.4",
+    "torch": "2.14.1+cu130",
+    "cuda": "13.0",
+    "cudnn": 92400,
+    "gpu": "NVIDIA GeForce RTX 3050",
+    "gpu_mem_GB": 7.7,
+    "transformers": "5.22.1"
+  },
+  "latency_ms": 7.09119987487793,
+  "latency": {
+    "median_ms": 7.09119987487793,
+    "p90_ms": 7.1908351421356205,
+    "min_ms": 7.047520160675049,
+    "std_ms": 0.06884249767764124
+  },
+  "kernel_ms_per_forward": 7.004317599999968,
+  "gpu_busy": 0.9877478739267017,
+  "verdict": "GPU-bound: kernels run almost back to back",
+  "kernels_per_forward": 235.0,
+  "avg_kernel_us": 29.805606808510504,
+  "cpu_ms_per_forward": 4.471490999999983,
+  "cuda_api_ms_per_forward": 1.1669039000000039,
+  "top_ops": [
+    {
+      "op": "aten::cudnn_convolution",
+      "calls_per_forward": 12.0,
+      "self_gpu_us_per_forward": 1147.8129500000018,
+      "share": 0.16387220219711437
+    },
+    {
+      "op": "aten::_efficient_attention_forward",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 877.4538499999986,
+      "share": 0.12527328144000816
+    },
+    {
+      "op": "aten::native_layer_norm",
+      "calls_per_forward": 30.0,
+      "self_gpu_us_per_forward": 859.8444000000052,
+      "share": 0.12275919641336781
+    },
+    {
+      "op": "aten::copy_",
+      "calls_per_forward": 29.0,
+      "self_gpu_us_per_forward": 806.8423499999926,
+      "share": 0.1151921423437447
+    },
+    {
+      "op": "aten::addmm",
+      "calls_per_forward": 40.0,
+      "self_gpu_us_per_forward": 595.6997499999874,
+      "share": 0.0850475069834055
+    },
+    {
+      "op": "aten::upsample_bilinear2d",
+      "calls_per_forward": 5.0,
+      "self_gpu_us_per_forward": 577.8683999999982,
+      "share": 0.08250174149727317
+    },
+    {
+      "op": "aten::mm",
+      "calls_per_forward": 12.0,
+      "self_gpu_us_per_forward": 452.4019500000012,
+      "share": 0.06458901149770868
+    },
+    {
+      "op": "aten::_conv_depthwise2d",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 447.79400000000135,
+      "share": 0.06393113870222038
+    },
+    {
+      "op": "aten::cat",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 429.691499999998,
+      "share": 0.06134666137926126
+    },
+    {
+      "op": "aten::add_",
+      "calls_per_forward": 23.0,
+      "self_gpu_us_per_forward": 226.6539499999967,
+      "share": 0.03235917657417444
+    },
+    {
+      "op": "aten::gelu",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 210.8379499999965,
+      "share": 0.03010114075923648
+    },
+    {
+      "op": "aten::add",
+      "calls_per_forward": 16.0,
+      "self_gpu_us_per_forward": 138.0935499999976,
+      "share": 0.019715489486084727
+    },
+    {
+      "op": "aten::cudnn_batch_norm",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 112.15249999999787,
+      "share": 0.016011909568463652
+    },
+    {
+      "op": "aten::clamp_min",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 107.59259999999867,
+      "share": 0.015360896827408163
+    },
+    {
+      "op": "aten::fill_",
+      "calls_per_forward": 16.0,
+      "self_gpu_us_per_forward": 13.57789999999693,
+      "share": 0.0019385043305285002
+    }
+  ],
+  "categories_us": {
+    "attention (SDPA)": 877.4538499999986,
+    "matmul / linear (addmm, mm, bmm)": 1048.1016999999886,
+    "convolution": 1595.606950000003,
+    "softmax": 0.0,
+    "normalization (LayerNorm, BatchNorm)": 971.996900000003,
+    "activation (GELU, ReLU)": 318.43054999999515,
+    "interpolate / pooling": 577.8683999999982,
+    "copy / layout (contiguous, cat, cast)": 1236.5338499999907,
+    "elementwise (add, mul, div)": 378.32539999999125,
+    "other": 0.0
+  },
+  "other_ops_us": {},
+  "parts_ms": {
+    "stage1.patch_embed": 0.17597696006298066,
+    "stage1.attention.sr_conv+norm": 0.1778726390004158,
+    "stage1.attention": 0.7650854355096817,
+    "stage1.mix_ffn": 0.7304032027721405,
+    "stage1": 2.2751692724227905,
+    "stage2.patch_embed": 0.08213376015424728,
+    "stage2.attention.sr_conv+norm": 0.0876307201385498,
+    "stage2.attention": 0.39968511879444124,
+    "stage2.mix_ffn": 0.3844767996668816,
+    "stage2": 1.0390681552886962,
+    "stage3.patch_embed": 0.058689920008182524,
+    "stage3.attention.sr_conv+norm": 0.0899123203009367,
+    "stage3.attention": 0.36073535919189453,
+    "stage3.mix_ffn": 0.33325439900159837,
+    "stage3": 0.833381118774414,
+    "stage4.patch_embed": 0.06520768024027347,
+    "stage4.attention": 0.17519616037607194,
+    "stage4.mix_ffn": 0.2040902404487133,
+    "stage4": 0.5023289591073989,
+    "decode_head.linear_c1": 0.1984435200691223,
+    "decode_head.linear_c2": 0.06489535972476006,
+    "decode_head.linear_c3": 0.024442239999771118,
+    "decode_head.linear_c4": 0.01325247997418046,
+    "decode_head.linear_fuse": 0.7482988786697388,
+    "decode_head.classifier": 0.07557056039571762,
+    "decode_head": 2.6290886402130127,
+    "total": 7.3884211349487305,
+    "other_top_level": 0.10938498914241812
+  },
+  "parts_order": [
+    [
+      "stage1",
+      0
+    ],
+    [
+      "stage1.patch_embed",
+      1
+    ],
+    [
+      "stage1.attention",
+      1
+    ],
+    [
+      "stage1.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage1.mix_ffn",
+      1
+    ],
+    [
+      "stage2",
+      0
+    ],
+    [
+      "stage2.patch_embed",
+      1
+    ],
+    [
+      "stage2.attention",
+      1
+    ],
+    [
+      "stage2.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage2.mix_ffn",
+      1
+    ],
+    [
+      "stage3",
+      0
+    ],
+    [
+      "stage3.patch_embed",
+      1
+    ],
+    [
+      "stage3.attention",
+      1
+    ],
+    [
+      "stage3.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage3.mix_ffn",
+      1
+    ],
+    [
+      "stage4",
+      0
+    ],
+    [
+      "stage4.patch_embed",
+      1
+    ],
+    [
+      "stage4.attention",
+      1
+    ],
+    [
+      "stage4.mix_ffn",
+      1
+    ],
+    [
+      "decode_head",
+      0
+    ],
+    [
+      "decode_head.linear_c1",
+      1
+    ],
+    [
+      "decode_head.linear_c2",
+      1
+    ],
+    [
+      "decode_head.linear_c3",
+      1
+    ],
+    [
+      "decode_head.linear_c4",
+      1
+    ],
+    [
+      "decode_head.linear_fuse",
+      1
+    ],
+    [
+      "decode_head.classifier",
+      1
+    ]
+  ]
+}

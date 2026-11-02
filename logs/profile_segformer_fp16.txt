@@ -1,0 +1,107 @@
+Loading weights:   0%|          | 0/208 [00:00<?, ?it/s]Loading weights: 100%|██████████| 208/208 [00:00<00:00, 11518.25it/s]
+USDT:2026-11-02 11:12:30 57376:57376 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-02 11:12:30 57376:57376 SyncActivityProfilerHandler.cpp:46] profiler_stop
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                forward         0.00%       0.000us         0.00%       0.000us       0.000us     239.992ms       217.85%     239.992ms      12.000ms            20  
+                                            aten::copy_         7.57%      18.292ms        18.34%      44.300ms       9.466us      32.189ms        29.22%      32.189ms       6.878us          4680  
+                                aten::native_layer_norm         2.28%       5.517ms         6.91%      16.687ms      27.812us      17.285ms        15.69%      18.054ms      30.090us           600  
+void at::native::(anonymous namespace)::vectorized_l...         0.00%       0.000us         0.00%       0.000us       0.000us      17.285ms        15.69%      17.285ms      28.809us           600  
+                                aten::cudnn_convolution         4.16%      10.057ms         5.91%      14.281ms      35.704us      15.335ms        13.92%      15.335ms      38.338us           400  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      15.192ms        13.79%      15.192ms       3.998us          3800  
+                              aten::upsample_bilinear2d         0.43%       1.036ms         1.97%       4.752ms      23.760us      11.560ms        10.49%      37.247ms     186.233us           200  
+void at::native::(anonymous namespace)::upsample_bil...         0.00%       0.000us         0.00%       0.000us       0.000us      11.560ms        10.49%      11.560ms     144.501us            80  
+                                              aten::cat         0.07%     159.469us         0.11%     265.729us      13.286us       8.591ms         7.80%       8.591ms     429.541us            20  
+void at::native::(anonymous namespace)::CatArrayBatc...         0.00%       0.000us         0.00%       0.000us       0.000us       8.591ms         7.80%       8.591ms     429.541us            20  
+void at::native::elementwise_kernel<128, 2, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       7.450ms         6.76%       7.450ms      24.835us           300  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       6.559ms         5.95%       6.559ms      23.425us           280  
+ampere_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_3...         0.00%       0.000us         0.00%       0.000us       0.000us       6.173ms         5.60%       6.173ms     308.659us            20  
+                                            aten::addmm         6.02%      14.529ms         7.76%      18.737ms      23.421us       5.487ms         4.98%       5.487ms       6.859us           800  
+                                             aten::add_         1.53%       3.684ms         2.66%       6.420ms      10.355us       5.236ms         4.75%       5.236ms       8.446us           620  
+void at::native::elementwise_kernel<128, 4, at::nati...         0.00%       0.000us         0.00%       0.000us       0.000us       5.236ms         4.75%       5.236ms       8.446us           620  
+                                               aten::mm         1.72%       4.146ms         2.30%       5.544ms      23.099us       4.260ms         3.87%       4.260ms      17.749us           240  
+                         aten::_flash_attention_forward         0.71%       1.710ms         2.26%       5.449ms      34.055us       3.211ms         2.91%       3.211ms      20.070us           160  
+void pytorch_flash::flash_fwd_kernel<Flash_fwd_kerne...         0.00%       0.000us         0.00%       0.000us       0.000us       3.211ms         2.91%       3.211ms      20.070us           160  
+void at::native::unrolled_elementwise_kernel<at::nat...         0.00%       0.000us         0.00%       0.000us       0.000us       2.987ms         2.71%       2.987ms       9.957us           300  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 241.532ms
+Self CUDA time total: 110.164ms
+
+# Profile: SegFormer-B0, input 360x480, fp16, batch 1
+
+| Metric | Value |
+|---|---|
+| latency without profiler, median | 7.92 ms |
+| total GPU kernel time per forward | 5.51 ms |
+| GPU busy = kernels / latency | 70% -> partly launch-bound: noticeable GPU idle gaps |
+| CUDA kernel launches per forward | 435 |
+| average kernel | 12.7 us |
+| CPU time of aten ops per forward (with profiler overhead) | 7.10 ms |
+| plus CUDA runtime CPU time (cudaLaunchKernel etc.) | 2.01 ms |
+
+## Most expensive ops (self GPU time)
+
+| Op | Calls per forward | us per forward | Share |
+|---|---|---|---|
+| `aten::copy_` | 234 | 1609 | 29.2% |
+| `aten::native_layer_norm` | 30 | 864 | 15.7% |
+| `aten::cudnn_convolution` | 20 | 767 | 13.9% |
+| `aten::upsample_bilinear2d` | 10 | 578 | 10.5% |
+| `aten::cat` | 1 | 430 | 7.8% |
+| `aten::addmm` | 40 | 274 | 5.0% |
+| `aten::add_` | 31 | 262 | 4.8% |
+| `aten::mm` | 12 | 213 | 3.9% |
+| `aten::_flash_attention_forward` | 8 | 161 | 2.9% |
+| `aten::add` | 16 | 136 | 2.5% |
+| `aten::gelu` | 8 | 97 | 1.8% |
+| `aten::cudnn_batch_norm` | 1 | 63 | 1.2% |
+| `aten::clamp_min` | 1 | 54 | 1.0% |
+
+## By category
+
+| Category | us per forward | Share |
+|---|---|---|
+| attention (SDPA) | 161 | 2.9% |
+| matmul / linear (addmm, mm, bmm) | 487 | 8.8% |
+| convolution | 767 | 13.9% |
+| normalization (LayerNorm, BatchNorm) | 928 | 16.8% |
+| activation (GELU, ReLU) | 151 | 2.7% |
+| interpolate / pooling | 578 | 10.5% |
+| copy / layout (contiguous, cat, cast) | 2039 | 37.0% |
+| elementwise (add, mul, div) | 397 | 7.2% |
+
+## By model part (CUDA events in hooks)
+
+| Part | ms per forward | Share of forward |
+|---|---|---|
+| stage1 | 1.620 | 17.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage1.patch_embed | 0.200 | 2.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage1.attention | 0.351 | 3.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stage1.attention.sr_conv+norm | 0.185 | 1.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage1.mix_ffn | 0.474 | 5.0% |
+| stage2 | 1.305 | 13.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage2.patch_embed | 0.083 | 0.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage2.attention | 0.556 | 5.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stage2.attention.sr_conv+norm | 0.192 | 2.0% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage2.mix_ffn | 0.404 | 4.2% |
+| stage3 | 2.148 | 22.5% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage3.patch_embed | 0.172 | 1.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage3.attention | 1.088 | 11.4% |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stage3.attention.sr_conv+norm | 0.363 | 3.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage3.mix_ffn | 0.525 | 5.5% |
+| stage4 | 1.704 | 17.9% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage4.patch_embed | 0.170 | 1.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage4.attention | 0.627 | 6.6% |
+| &nbsp;&nbsp;&nbsp;&nbsp;stage4.mix_ffn | 0.547 | 5.7% |
+| decode_head | 2.485 | 26.1% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode_head.linear_c1 | 0.162 | 1.7% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode_head.linear_c2 | 0.043 | 0.4% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode_head.linear_c3 | 0.027 | 0.3% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode_head.linear_c4 | 0.020 | 0.2% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode_head.linear_fuse | 0.652 | 6.8% |
+| &nbsp;&nbsp;&nbsp;&nbsp;decode_head.classifier | 0.044 | 0.5% |
+| other (outside top-level parts: final upsample etc.) | 0.269 | 2.8% |
+| **whole forward** | **9.530** | 100% |
+
+Saved to /home/magic/work_task/segformer-camvid/results/profile/segformer_360x480_fp16_b1

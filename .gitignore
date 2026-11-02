@@ -19,3 +19,6 @@ venv/
 .DS_Store
 wandb/
 runs/
+
+# profiler traces
+results/profile/*/trace.json

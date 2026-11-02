@@ -1,0 +1,264 @@
+{
+  "model": "SegFormer-B0",
+  "input": "360x480",
+  "variant": "bf16",
+  "batch": 1,
+  "env": {
+    "python": "3.14.4",
+    "torch": "2.14.1+cu130",
+    "cuda": "13.0",
+    "cudnn": 92400,
+    "gpu": "NVIDIA GeForce RTX 3050",
+    "gpu_mem_GB": 7.7,
+    "transformers": "5.22.1"
+  },
+  "latency_ms": 7.616511821746826,
+  "latency": {
+    "median_ms": 7.616511821746826,
+    "p90_ms": 7.696998357772827,
+    "min_ms": 7.567359924316406,
+    "std_ms": 0.06810669197185562
+  },
+  "kernel_ms_per_forward": 5.74267490000004,
+  "gpu_busy": 0.7539770218177083,
+  "verdict": "partly launch-bound: noticeable GPU idle gaps",
+  "kernels_per_forward": 430.0,
+  "avg_kernel_us": 13.355057906976837,
+  "cpu_ms_per_forward": 6.942583649999891,
+  "cuda_api_ms_per_forward": 2.015373300000079,
+  "top_ops": [
+    {
+      "op": "aten::copy_",
+      "calls_per_forward": 235.0,
+      "self_gpu_us_per_forward": 1605.9850500000287,
+      "share": 0.2796580126797736
+    },
+    {
+      "op": "aten::native_layer_norm",
+      "calls_per_forward": 30.0,
+      "self_gpu_us_per_forward": 864.4069000000003,
+      "share": 0.15052339111169158
+    },
+    {
+      "op": "aten::cudnn_convolution",
+      "calls_per_forward": 12.0,
+      "self_gpu_us_per_forward": 624.9588000000016,
+      "share": 0.10882712514337131
+    },
+    {
+      "op": "aten::upsample_bilinear2d",
+      "calls_per_forward": 10.0,
+      "self_gpu_us_per_forward": 578.8253999999977,
+      "share": 0.10079369110725626
+    },
+    {
+      "op": "aten::_conv_depthwise2d",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 448.4373000000093,
+      "share": 0.07808857506455855
+    },
+    {
+      "op": "aten::cat",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 433.8646499999992,
+      "share": 0.07555096841717371
+    },
+    {
+      "op": "aten::addmm",
+      "calls_per_forward": 40.0,
+      "self_gpu_us_per_forward": 268.6524000000121,
+      "share": 0.04678175322096159
+    },
+    {
+      "op": "aten::mm",
+      "calls_per_forward": 12.0,
+      "self_gpu_us_per_forward": 252.81254999999615,
+      "share": 0.0440234828546527
+    },
+    {
+      "op": "aten::_flash_attention_forward",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 161.39884999998952,
+      "share": 0.028105169247868867
+    },
+    {
+      "op": "aten::add_",
+      "calls_per_forward": 23.0,
+      "self_gpu_us_per_forward": 147.39275000000276,
+      "share": 0.025666218716299222
+    },
+    {
+      "op": "aten::add",
+      "calls_per_forward": 16.0,
+      "self_gpu_us_per_forward": 135.74405000000215,
+      "share": 0.02363777374895473
+    },
+    {
+      "op": "aten::gelu",
+      "calls_per_forward": 8.0,
+      "self_gpu_us_per_forward": 100.52040000000827,
+      "share": 0.017504107711200503
+    },
+    {
+      "op": "aten::native_batch_norm",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 64.39859999999707,
+      "share": 0.011214042431689218
+    },
+    {
+      "op": "aten::clamp_min",
+      "calls_per_forward": 1.0,
+      "self_gpu_us_per_forward": 55.27719999999481,
+      "share": 0.009625688544548192
+    }
+  ],
+  "categories_us": {
+    "attention (SDPA)": 161.39884999998952,
+    "matmul / linear (addmm, mm, bmm)": 521.4649500000082,
+    "convolution": 1073.3961000000108,
+    "softmax": 0.0,
+    "normalization (LayerNorm, BatchNorm)": 928.8054999999973,
+    "activation (GELU, ReLU)": 155.79760000000306,
+    "interpolate / pooling": 578.8253999999977,
+    "copy / layout (contiguous, cat, cast)": 2039.849700000028,
+    "elementwise (add, mul, div)": 283.1368000000049,
+    "other": 0.0
+  },
+  "other_ops_us": {},
+  "parts_ms": {
+    "stage1.patch_embed": 0.19710720092058182,
+    "stage1.attention.sr_conv+norm": 0.1669600000977516,
+    "stage1.attention": 0.32981632024049756,
+    "stage1.mix_ffn": 0.5421638411283493,
+    "stage1": 1.6505734419822693,
+    "stage2.patch_embed": 0.0818745593726635,
+    "stage2.attention.sr_conv+norm": 0.15566591992974282,
+    "stage2.attention": 0.45662783801555634,
+    "stage2.mix_ffn": 0.395109121799469,
+    "stage2": 1.185416316986084,
+    "stage3.patch_embed": 0.16911103934049607,
+    "stage3.attention.sr_conv+norm": 0.3640096002817154,
+    "stage3.attention": 1.0623187220096588,
+    "stage3.mix_ffn": 0.48695999920368194,
+    "stage3": 2.0800799989700316,
+    "stage4.patch_embed": 0.17587072014808655,
+    "stage4.attention": 0.6139001578092576,
+    "stage4.mix_ffn": 0.490227198600769,
+    "stage4": 1.6365068864822387,
+    "decode_head.linear_c1": 0.1823027190566063,
+    "decode_head.linear_c2": 0.04513599991798401,
+    "decode_head.linear_c3": 0.028613120131194592,
+    "decode_head.linear_c4": 0.019873280078172684,
+    "decode_head.linear_fuse": 0.6490560007095337,
+    "decode_head.classifier": 0.04433983996510506,
+    "decode_head": 2.4950182485580443,
+    "total": 9.314391708374023,
+    "other_top_level": 0.26679681539535416
+  },
+  "parts_order": [
+    [
+      "stage1",
+      0
+    ],
+    [
+      "stage1.patch_embed",
+      1
+    ],
+    [
+      "stage1.attention",
+      1
+    ],
+    [
+      "stage1.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage1.mix_ffn",
+      1
+    ],
+    [
+      "stage2",
+      0
+    ],
+    [
+      "stage2.patch_embed",
+      1
+    ],
+    [
+      "stage2.attention",
+      1
+    ],
+    [
+      "stage2.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage2.mix_ffn",
+      1
+    ],
+    [
+      "stage3",
+      0
+    ],
+    [
+      "stage3.patch_embed",
+      1
+    ],
+    [
+      "stage3.attention",
+      1
+    ],
+    [
+      "stage3.attention.sr_conv+norm",
+      2
+    ],
+    [
+      "stage3.mix_ffn",
+      1
+    ],
+    [
+      "stage4",
+      0
+    ],
+    [
+      "stage4.patch_embed",
+      1
+    ],
+    [
+      "stage4.attention",
+      1
+    ],
+    [
+      "stage4.mix_ffn",
+      1
+    ],
+    [
+      "decode_head",
+      0
+    ],
+    [
+      "decode_head.linear_c1",
+      1
+    ],
+    [
+      "decode_head.linear_c2",
+      1
+    ],
+    [
+      "decode_head.linear_c3",
+      1
+    ],
+    [
+      "decode_head.linear_c4",
+      1
+    ],
+    [
+      "decode_head.linear_fuse",
+      1
+    ],
+    [
+      "decode_head.classifier",
+      1
+    ]
+  ]
+}

@@ -1,0 +1,82 @@
+USDT:2026-11-02 11:13:46 57649:57649 SyncActivityProfilerHandler.cpp:39] profiler_start
+USDT:2026-11-02 11:13:47 57649:57649 SyncActivityProfilerHandler.cpp:46] profiler_stop
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                forward         0.00%       0.000us         0.00%       0.000us       0.000us     814.931ms       100.71%     814.931ms      40.747ms            20  
+                                aten::cudnn_convolution         3.73%      30.462ms        35.55%     290.218ms     237.883us     599.567ms        74.10%     599.567ms     491.449us          1220  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us     167.641ms        20.72%     167.641ms     441.162us           380  
+void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s168...         0.00%       0.000us         0.00%       0.000us       0.000us     112.096ms        13.85%     112.096ms     622.755us           180  
+void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s168...         0.00%       0.000us         0.00%       0.000us       0.000us      87.309ms        10.79%      87.309ms       1.455ms            60  
+                                 aten::cudnn_batch_norm         1.95%      15.898ms        22.44%     183.224ms     152.687us      77.463ms         9.57%      77.463ms      64.552us          1200  
+void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float,...         0.00%       0.000us         0.00%       0.000us       0.000us      77.463ms         9.57%      77.463ms      64.552us          1200  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      65.217ms         8.06%      65.217ms      58.230us          1120  
+                                       aten::clamp_min_         0.65%       5.346ms         8.01%      65.379ms      66.714us      61.868ms         7.65%      61.868ms      63.131us           980  
+sm86_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nh...         0.00%       0.000us         0.00%       0.000us       0.000us      59.708ms         7.38%      59.708ms       2.985ms            20  
+sm86_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nh...         0.00%       0.000us         0.00%       0.000us       0.000us      58.183ms         7.19%      58.183ms       2.909ms            20  
+                                             aten::add_         0.27%       2.207ms         1.67%      13.643ms      40.127us      56.029ms         6.92%      56.029ms     164.793us           340  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      55.979ms         6.92%      55.979ms     174.934us           320  
+void cudnn::engines_precompiled::nchwToNhwcKernel<fl...         0.00%       0.000us         0.00%       0.000us       0.000us      45.077ms         5.57%      45.077ms      80.495us           560  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us      13.325ms         1.65%      13.325ms     133.251us           100  
+_5x_cudnn_ampere_scudnn_winograd_128x128_ldg1_ldg4_r...         0.00%       0.000us         0.00%       0.000us       0.000us      13.111ms         1.62%      13.111ms     109.259us           120  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us      11.643ms         1.44%      11.643ms      83.163us           140  
+void cudnn::engines_precompiled::nhwcToNchwKernel<fl...         0.00%       0.000us         0.00%       0.000us       0.000us       8.174ms         1.01%       8.174ms      31.439us           260  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us       7.594ms         0.94%       7.594ms     379.703us            20  
+                                              aten::cat         0.02%     195.550us         0.04%     316.949us      15.847us       4.447ms         0.55%       4.447ms     222.374us            20  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 816.452ms
+Self CUDA time total: 809.160ms
+
+# Profile: DeepLabV3-ResNet50, input 360x480, tf32, batch 1
+
+| Metric | Value |
+|---|---|
+| latency without profiler, median | 38.53 ms |
+| total GPU kernel time per forward | 40.46 ms |
+| GPU busy = kernels / latency | 105% -> GPU-bound: kernels run almost back to back |
+| CUDA kernel launches per forward | 250 |
+| average kernel | 161.8 us |
+| CPU time of aten ops per forward (with profiler overhead) | 4.47 ms |
+| plus CUDA runtime CPU time (cudaLaunchKernel etc.) | 9.72 ms |
+
+## Most expensive ops (self GPU time)
+
+| Op | Calls per forward | us per forward | Share |
+|---|---|---|---|
+| `aten::cudnn_convolution` | 61 | 29978 | 74.1% |
+| `aten::cudnn_batch_norm` | 60 | 3873 | 9.6% |
+| `aten::clamp_min_` | 49 | 3093 | 7.6% |
+| `aten::add_` | 17 | 2801 | 6.9% |
+| `aten::cat` | 1 | 222 | 0.5% |
+| `aten::clamp_min` | 7 | 167 | 0.4% |
+| `aten::max_pool2d_with_indices` | 1 | 117 | 0.3% |
+| `aten::mean` | 1 | 115 | 0.3% |
+| `aten::upsample_bilinear2d` | 2 | 90 | 0.2% |
+
+## By category
+
+| Category | us per forward | Share |
+|---|---|---|
+| convolution | 29978 | 74.1% |
+| normalization (LayerNorm, BatchNorm) | 3873 | 9.6% |
+| activation (GELU, ReLU) | 3261 | 8.1% |
+| interpolate / pooling | 207 | 0.5% |
+| copy / layout (contiguous, cat, cast) | 222 | 0.5% |
+| elementwise (add, mul, div) | 2801 | 6.9% |
+| other | 115 | 0.3% |
+
+## By model part (CUDA events in hooks)
+
+| Part | ms per forward | Share of forward |
+|---|---|---|
+| stem (conv1+bn+relu+maxpool) | 0.512 | 1.3% |
+| layer1 | 2.594 | 6.8% |
+| layer2 | 2.477 | 6.5% |
+| layer3 | 8.484 | 22.1% |
+| layer4 | 12.950 | 33.8% |
+| ASPP | 10.744 | 28.0% |
+| head (conv3x3+bn+relu+conv1x1) | 0.524 | 1.4% |
+| other (outside top-level parts: final upsample etc.) | 0.060 | 0.2% |
+| **whole forward** | **38.345** | 100% |
+
+Saved to /home/magic/work_task/segformer-camvid/results/profile/deeplab_360x480_tf32_b1

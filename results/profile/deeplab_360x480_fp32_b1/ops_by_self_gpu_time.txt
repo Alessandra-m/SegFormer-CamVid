@@ -1,0 +1,36 @@
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                forward         0.00%       0.000us         0.00%       0.000us       0.000us     763.930ms       100.39%     763.930ms      38.197ms            20  
+                                aten::cudnn_convolution         3.74%      28.655ms        32.58%     249.349ms     204.385us     560.368ms        73.64%     560.368ms     459.318us          1220  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us     154.987ms        20.37%     154.987ms     407.859us           380  
+void cutlass__5x_cudnn::Kernel<cutlass_tensorop_s168...         0.00%       0.000us         0.00%       0.000us       0.000us     144.976ms        19.05%     144.976ms     906.101us           160  
+sm86_xmma_fprop_implicit_gemm_indexed_tf32f32_tf32f3...         0.00%       0.000us         0.00%       0.000us       0.000us      83.232ms        10.94%      83.232ms       1.387ms            60  
+                                 aten::cudnn_batch_norm         1.96%      15.012ms        15.77%     120.702ms     100.585us      75.728ms         9.95%      75.728ms      63.107us          1200  
+void cudnn::bn_fw_inf_1C11_kernel_NCHW<float, float,...         0.00%       0.000us         0.00%       0.000us       0.000us      75.728ms         9.95%      75.728ms      63.107us          1200  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      61.182ms         8.04%      61.182ms      54.627us          1120  
+                                       aten::clamp_min_         0.66%       5.034ms         6.91%      52.894ms      53.973us      57.808ms         7.60%      57.808ms      58.988us           980  
+                                             aten::add_         0.28%       2.127ms         1.25%       9.548ms      28.083us      54.977ms         7.22%      54.977ms     161.698us           340  
+void at::native::vectorized_elementwise_kernel<4, at...         0.00%       0.000us         0.00%       0.000us       0.000us      54.927ms         7.22%      54.927ms     171.646us           320  
+sm86_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nh...         0.00%       0.000us         0.00%       0.000us       0.000us      53.656ms         7.05%      53.656ms       2.683ms            20  
+void cudnn::engines_precompiled::nchwToNhwcKernel<fl...         0.00%       0.000us         0.00%       0.000us       0.000us      43.636ms         5.73%      43.636ms      77.922us           560  
+sm86_xmma_fprop_implicit_gemm_tf32f32_tf32f32_f32_nh...         0.00%       0.000us         0.00%       0.000us       0.000us      15.517ms         2.04%      15.517ms     387.929us            40  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us      13.605ms         1.79%      13.605ms     113.373us           120  
+_5x_cudnn_ampere_scudnn_winograd_128x128_ldg1_ldg4_r...         0.00%       0.000us         0.00%       0.000us       0.000us      13.113ms         1.72%      13.113ms     109.273us           120  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us       7.921ms         1.04%       7.921ms      79.213us           100  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us       7.100ms         0.93%       7.100ms     355.001us            20  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us       4.411ms         0.58%       4.411ms      73.516us            60  
+void cudnn::engines_precompiled::nhwcToNchwKernel<fl...         0.00%       0.000us         0.00%       0.000us       0.000us       4.368ms         0.57%       4.368ms      24.267us           180  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us       3.556ms         0.47%       3.556ms      59.274us            60  
+      _5x_cudnn_ampere_scudnn_128x128_relu_medium_nn_v1         0.00%       0.000us         0.00%       0.000us       0.000us       3.461ms         0.45%       3.461ms     173.046us            20  
+       _5x_cudnn_ampere_scudnn_128x64_relu_medium_nn_v1         0.00%       0.000us         0.00%       0.000us       0.000us       3.444ms         0.45%       3.444ms     172.198us            20  
+                                        aten::clamp_min         0.14%       1.064ms         5.29%      40.481ms     289.151us       3.374ms         0.44%       3.374ms      24.100us           140  
+                                              aten::cat         0.02%     172.290us         2.71%      20.766ms       1.038ms       2.711ms         0.36%       2.711ms     135.529us            20  
+void at::native::(anonymous namespace)::CatArrayBatc...         0.00%       0.000us         0.00%       0.000us       0.000us       2.711ms         0.36%       2.711ms     135.529us            20  
+                                             aten::mean         0.03%     207.658us         1.32%      10.078ms     503.883us       2.297ms         0.30%       2.297ms     114.837us            20  
+void at::native::reduce_kernel<512, 1, at::native::R...         0.00%       0.000us         0.00%       0.000us       0.000us       2.297ms         0.30%       2.297ms     114.837us            20  
+void cutlass::Kernel2<cutlass_80_tensorop_s1688gemm_...         0.00%       0.000us         0.00%       0.000us       0.000us       2.247ms         0.30%       2.247ms     112.361us            20  
+                          aten::max_pool2d_with_indices         0.02%     184.397us         0.35%       2.707ms     135.333us       1.924ms         0.25%       1.924ms      96.225us            20  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 765.443ms
+Self CUDA time total: 760.999ms
