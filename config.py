@@ -68,8 +68,11 @@ elif EXPERIMENT == "imagenet":
     CHECKPOINT = "nvidia/mit-b0"
     HEAD_INIT_FROM = {}
     RUN_NAME = "b0_mitb0_imagenet"
+elif EXPERIMENT == "short":
+    NUM_EPOCHS = 25
+    RUN_NAME = "b0_cityscapes_512_e25"
 elif EXPERIMENT != "main":
-    raise ValueError(f"Unknown EXP={EXPERIMENT!r}, expected main | old | imagenet")
+    raise ValueError(f"Unknown EXP={EXPERIMENT!r}, expected main | short | old | imagenet")
 
 OUTPUTS_DIR = PROJECT_DIR / "outputs"
 OUTPUT_DIR = OUTPUTS_DIR / RUN_NAME

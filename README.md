@@ -178,6 +178,7 @@ CamVid/
 |---|---|---|---|---|---|
 | `main` | Cityscapes + перенос головы | scale-crop 512 / 512×683 | CE + Lovász | 100 | `b0_cityscapes_512` |
 | `imagenet` | ImageNet (`nvidia/mit-b0`), случайная голова | scale-crop 512 / 512×683 | CE + Lovász | 100 | `b0_mitb0_imagenet` |
+| `short` | как `main` | как `main` | CE + Lovász | 25 | `b0_cityscapes_512_e25` |
 | `old` | ImageNet (`nvidia/mit-b0`), случайная голова | растяжение в 512×512 / 512×512 | CE | 50 | `b0_mitb0_old` |
 
 `old` — исходный вариант проекта, воспроизведённый на текущем коде (без warmup и
@@ -187,8 +188,16 @@ CamVid/
 ### Динамика обучения (`logs/b0_cityscapes_512.log`)
 
 - val mIoU: 0.697 после 1-й эпохи → 0.779 на 13-й → дальше плато 0.77–0.78.
-  Лучшая эпоха — 90 (`checkpoint-8280`, val mIoU 0.7797), но прирост после 13-й эпохи
-  (+0.001) в пределах шума: для этой конфигурации хватило бы ~20–30 эпох.
+  Лучшая эпоха — 90 (`checkpoint-8280`, val mIoU 0.7797), прирост после 13-й эпохи на val
+  всего +0.001.
+- **Хватит ли 25 эпох** (`EXP=short`, отдельный прогон с тем же расписанием, сжатым до
+  25 эпох, около 7 мин): val 0.774, **test 0.702** (0.722 с flip-TTA) против 0.780 / 0.709
+  (0.730) у 100 эпох. Короткий вариант уже обходит DeepLabV3 (0.695) и в 4 раза
+  дешевле. Длинное обучение добавляет +0.007 на test, почти целиком на редких классах:
+  Bicyclist +0.058, Pedestrian +0.021, Car +0.020, Pole +0.015 (зато Fence −0.033).
+  На val это почти не видно — плато val скрывает медленное дообучение редких классов.
+  Сравнение по одному запуску каждого варианта, так что разница ~0.007 сопоставима
+  с разбросом между запусками. Итоговой оставлена модель на 100 эпох.
 - val loss минимален на 13-й эпохе (0.395) и дальше держится на 0.41–0.42, тогда как
   train loss продолжает падать (0.43 → 0.32): лёгкое переобучение, на mIoU не сказывается.
 - Со случайной головой рост заметно медленнее. `imagenet`: 0.33 после 1-й эпохи → 0.73
@@ -212,6 +221,8 @@ DeepLabV3. mIoU — по всему сплиту (пересечения и об
 | SegFormer-B0, `EXP=imagenet` | 3.7 млн | 0.761 | 0.660 | 0.953 / 0.910 |
 | **SegFormer-B0, `EXP=main`** | **3.7 млн** | **0.780** | **0.709** | 0.956 / 0.928 |
 | SegFormer-B0, `EXP=main` + flip-TTA | 3.7 млн | 0.802 | 0.730 | 0.960 / 0.934 |
+| SegFormer-B0, `EXP=short` (25 эпох) | 3.7 млн | 0.774 | 0.702 | 0.955 / 0.927 |
+| SegFormer-B0, `EXP=short` + flip-TTA | 3.7 млн | 0.797 | 0.722 | 0.960 / 0.933 |
 
 IoU по классам на test (без TTA, кроме последнего столбца):
 
@@ -346,6 +357,8 @@ EXP=old python3 train.py 2>&1 | tee logs/b0_mitb0_old.log
 python3 evaluate_model.py outputs/b0_mitb0_old | tee logs/evaluate_old.txt
 EXP=imagenet python3 train.py 2>&1 | tee logs/b0_mitb0_imagenet.log
 python3 evaluate_model.py outputs/b0_mitb0_imagenet | tee logs/evaluate_imagenet.txt
+EXP=short python3 train.py 2>&1 | tee logs/b0_cityscapes_512_e25.log
+python3 evaluate_model.py outputs/b0_cityscapes_512_e25 | tee logs/evaluate_e25.txt
 
 # 5. предсказание на одной картинке
 python3 predict.py <DATA_ROOT>/test/0001TP_008550.png pred.png --model weights/segformer-b0-camvid
@@ -375,6 +388,7 @@ python3 predict.py <DATA_ROOT>/test/0001TP_008550.png pred.png --model weights/s
   Проверка: `evaluate_model.py` на этих весах даёт test mIoU 0.709.
 - **Показатели** — `results/metrics.json`, `results/metrics_flip.json` (mIoU, accuracy,
   IoU по классам для val и test), `results/train_log.json` (история обучения),
-  `results/metrics_old.json` и `results/metrics_imagenet.json` (сравнительные эксперименты),
+  `results/metrics_old.json`, `results/metrics_imagenet.json`, `results/metrics_e25*.json`
+  (сравнительные эксперименты),
   логи в `logs/`, примеры в `results/predictions/` и `results/predictions_flip/`.
 

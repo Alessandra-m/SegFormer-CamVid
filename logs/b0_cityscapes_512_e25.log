@@ -1,0 +1,31 @@
+Classes (excluding ignore): 11 -> {0: 'Sky', 1: 'Building', 2: 'Pole', 3: 'Road', 4: 'Sidewalk', 5: 'Tree', 6: 'SignSymbol', 7: 'Fence', 8: 'Car', 9: 'Pedestrian', 10: 'Bicyclist'}
+Classifier initialized from nvidia/segformer-b0-finetuned-cityscapes-1024-1024 classes: {'Sky': 'sky', 'Building': 'building', 'Pole': 'pole', 'Road': 'road', 'Sidewalk': 'sidewalk', 'Tree': 'vegetation', 'SignSymbol': 'traffic sign', 'Fence': 'fence', 'Car': 'car', 'Pedestrian': 'person', 'Bicyclist': 'rider'}
+train: 367 | val: 101 | eval input: (512, 683) | crop: 512
+epoch   1/25 | train loss 0.7679 | val loss 0.5408 | val mIoU 0.6967 | best 0.6967 | 24s
+epoch   2/25 | train loss 0.6347 | val loss 0.4495 | val mIoU 0.7397 | best 0.7397 | 17s
+epoch   3/25 | train loss 0.5473 | val loss 0.4288 | val mIoU 0.7540 | best 0.7540 | 16s
+epoch   4/25 | train loss 0.5326 | val loss 0.4561 | val mIoU 0.7439 | best 0.7540 | 16s
+epoch   5/25 | train loss 0.4986 | val loss 0.4248 | val mIoU 0.7528 | best 0.7540 | 16s
+epoch   6/25 | train loss 0.4830 | val loss 0.4813 | val mIoU 0.7384 | best 0.7540 | 16s
+epoch   7/25 | train loss 0.4619 | val loss 0.4491 | val mIoU 0.7512 | best 0.7540 | 16s
+epoch   8/25 | train loss 0.4731 | val loss 0.4378 | val mIoU 0.7577 | best 0.7577 | 16s
+epoch   9/25 | train loss 0.4513 | val loss 0.4623 | val mIoU 0.7538 | best 0.7577 | 16s
+epoch  10/25 | train loss 0.4465 | val loss 0.4531 | val mIoU 0.7548 | best 0.7577 | 16s
+epoch  11/25 | train loss 0.4382 | val loss 0.4455 | val mIoU 0.7633 | best 0.7633 | 16s
+epoch  12/25 | train loss 0.4314 | val loss 0.4250 | val mIoU 0.7670 | best 0.7670 | 17s
+epoch  13/25 | train loss 0.4311 | val loss 0.4069 | val mIoU 0.7740 | best 0.7740 | 16s
+epoch  14/25 | train loss 0.4334 | val loss 0.4207 | val mIoU 0.7686 | best 0.7740 | 16s
+epoch  15/25 | train loss 0.4200 | val loss 0.4198 | val mIoU 0.7698 | best 0.7740 | 17s
+epoch  16/25 | train loss 0.4165 | val loss 0.4174 | val mIoU 0.7680 | best 0.7740 | 16s
+epoch  17/25 | train loss 0.4029 | val loss 0.4190 | val mIoU 0.7684 | best 0.7740 | 16s
+epoch  18/25 | train loss 0.4065 | val loss 0.4105 | val mIoU 0.7727 | best 0.7740 | 17s
+epoch  19/25 | train loss 0.3972 | val loss 0.4252 | val mIoU 0.7667 | best 0.7740 | 17s
+epoch  20/25 | train loss 0.4008 | val loss 0.4198 | val mIoU 0.7683 | best 0.7740 | 16s
+epoch  21/25 | train loss 0.4022 | val loss 0.4160 | val mIoU 0.7697 | best 0.7740 | 16s
+epoch  22/25 | train loss 0.4029 | val loss 0.4157 | val mIoU 0.7697 | best 0.7740 | 16s
+epoch  23/25 | train loss 0.3945 | val loss 0.4183 | val mIoU 0.7697 | best 0.7740 | 17s
+epoch  24/25 | train loss 0.3947 | val loss 0.4160 | val mIoU 0.7710 | best 0.7740 | 17s
+epoch  25/25 | train loss 0.3917 | val loss 0.4163 | val mIoU 0.7708 | best 0.7740 | 16s
+
+Done. Best checkpoint /home/magic/work_task/segformer-camvid/outputs/b0_cityscapes_512_e25/checkpoint-1196 saved to /home/magic/work_task/segformer-camvid/outputs/b0_cityscapes_512_e25
+best val mIoU (during training): 0.7740
