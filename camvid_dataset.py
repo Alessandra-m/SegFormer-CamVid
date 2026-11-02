@@ -150,7 +150,6 @@ class CamVidDataset(torch.utils.data.Dataset):
         return Image.fromarray(image[crop]), label[crop].astype(np.int64)
 
     def _resize(self, image, label):
-        """Растянуть кадр в EVAL_SIZE без сохранения пропорций (старый вариант)."""
         h, w = C.EVAL_SIZE
         image = image.resize((w, h), Image.BILINEAR)
         label = np.array(Image.fromarray(label.astype(np.uint8)).resize((w, h), Image.NEAREST))

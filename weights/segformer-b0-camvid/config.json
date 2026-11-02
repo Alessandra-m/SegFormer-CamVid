@@ -1,0 +1,96 @@
+{
+  "_name_or_path": "/home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512/checkpoint-8280",
+  "architectures": [
+    "SegformerForSemanticSegmentation"
+  ],
+  "attention_probs_dropout_prob": 0.0,
+  "classifier_dropout_prob": 0.1,
+  "decoder_hidden_size": 256,
+  "depths": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "downsampling_rates": [
+    1,
+    4,
+    8,
+    16
+  ],
+  "drop_path_rate": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.0,
+  "hidden_sizes": [
+    32,
+    64,
+    160,
+    256
+  ],
+  "id2label": {
+    "0": "Sky",
+    "1": "Building",
+    "2": "Pole",
+    "3": "Road",
+    "4": "Sidewalk",
+    "5": "Tree",
+    "6": "SignSymbol",
+    "7": "Fence",
+    "8": "Car",
+    "9": "Pedestrian",
+    "10": "Bicyclist"
+  },
+  "image_size": 224,
+  "initializer_range": 0.02,
+  "label2id": {
+    "Bicyclist": 10,
+    "Building": 1,
+    "Car": 8,
+    "Fence": 7,
+    "Pedestrian": 9,
+    "Pole": 2,
+    "Road": 3,
+    "Sidewalk": 4,
+    "SignSymbol": 6,
+    "Sky": 0,
+    "Tree": 5
+  },
+  "layer_norm_eps": 1e-06,
+  "mlp_ratios": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "model_type": "segformer",
+  "num_attention_heads": [
+    1,
+    2,
+    5,
+    8
+  ],
+  "num_channels": 3,
+  "num_encoder_blocks": 4,
+  "patch_sizes": [
+    7,
+    3,
+    3,
+    3
+  ],
+  "reshape_last_stage": true,
+  "semantic_loss_ignore_index": 255,
+  "sr_ratios": [
+    8,
+    4,
+    2,
+    1
+  ],
+  "strides": [
+    4,
+    2,
+    2,
+    2
+  ],
+  "torch_dtype": "float32",
+  "transformers_version": "4.46.3"
+}

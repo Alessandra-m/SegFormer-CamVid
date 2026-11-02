@@ -37,7 +37,7 @@ SegFormer объединяет иерархический трансформер
   этим пользуемся напрямую: обучение на кропах 512×512, инференс на 512×683.
 - **Efficient self-attention**: ключи и значения сжимаются свёрткой со stride R
   (у B0 по стадиям 8, 4, 2, 1), и сложность внимания падает с O(N²) до O(N²/R²).
-  Например, на первой стадии для входа 512×683 это 21 888 запросов × 342 ключа
+  Например, на первой стадии для входа 512×683 это 21 888 запросов (128×171) × 336 ключей (16×21)
   вместо 21 888 × 21 888 — при этом каждый пиксель по-прежнему видит всю картинку.
 
 ### Признаки нескольких масштабов (multi-scale)
@@ -79,9 +79,11 @@ SegFormer-CamVid/
 ├── tests/
 │   └── test_mask_mapping.py   # синтетический тест конвертации масок (numpy, без torch)
 ├── logs/                # логи обучения, оценки и sanity_check
+├── weights/
+│   └── segformer-b0-camvid/   # итоговые веса основной модели (config + safetensors + processor)
 ├── results/             # metrics*.json, train_log.json, примеры предсказаний
 │   └── predictions/
-└── outputs/             # не в git: чекпоинты и веса (веса — в GitHub Release)
+└── outputs/             # не в git: рабочие папки обучения с чекпоинтами
 ```
 
 ---
@@ -179,7 +181,7 @@ CamVid/
 | `old` | ImageNet (`nvidia/mit-b0`), случайная голова | растяжение в 512×512 / 512×512 | CE | 50 | `b0_mitb0_old` |
 
 `old` — исходный вариант проекта, воспроизведённый на текущем коде (без warmup и
-ускоренного LR головы). `imagenet` отделяет вклад инициализации из Cityscapes от вклада
+ускоренного LR головы; от первого прогона отличается weight decay 0.01 вместо 0 и fp16). `imagenet` отделяет вклад инициализации из Cityscapes от вклада
 аугментаций, геометрии входа и Lovász.
 
 ### Динамика обучения (`logs/b0_cityscapes_512.log`)
@@ -281,9 +283,9 @@ IoU по классам на test (без TTA, кроме последнего �
 
 **Успешные**
 
-![best 1](outputs/b0_cityscapes_512/predictions/best_1.png)
-![best 2](outputs/b0_cityscapes_512/predictions/best_2.png)
-![best 3](outputs/b0_cityscapes_512/predictions/best_3.png)
+![best 1](results/predictions/best_1.png)
+![best 2](results/predictions/best_2.png)
+![best 3](results/predictions/best_3.png)
 
 - `best_1` (Seq05VD_f03000, mIoU кадра 0.80, ошибки 6.4 %): дорога, тротуар, здания,
   машины и пешеход выделены точно, включая сумку у пешехода. Ошибки — тонкие голые ветви
@@ -297,9 +299,9 @@ IoU по классам на test (без TTA, кроме последнего �
 
 **Ошибочные**
 
-![worst 1](outputs/b0_cityscapes_512/predictions/worst_1.png)
-![worst 2](outputs/b0_cityscapes_512/predictions/worst_2.png)
-![worst 3](outputs/b0_cityscapes_512/predictions/worst_3.png)
+![worst 1](results/predictions/worst_1.png)
+![worst 2](results/predictions/worst_2.png)
+![worst 3](results/predictions/worst_3.png)
 
 - `worst_1` (Seq05VD_f02610, mIoU кадра 0.17, ошибки 45 %): предсказание визуально
   соответствует кадру, а эталон — нет: тротуар справа обрезан прямой вертикальной
@@ -321,7 +323,7 @@ IoU по классам на test (без TTA, кроме последнего �
 ## 7. Запуск
 
 Окружение, на котором получены результаты: Python 3.8, torch 2.4.1,
-transformers 4.46.3, evaluate 0.4.6, segmentation-models-pytorch 0.3.3, GPU _TODO_.
+transformers 4.46.3, evaluate 0.4.6, segmentation-models-pytorch 0.3.3, GPU NVIDIA GeForce RTX 4050.
 
 ```bash
 pip install -r requirements.txt
@@ -346,24 +348,33 @@ EXP=imagenet python3 train.py 2>&1 | tee logs/b0_mitb0_imagenet.log
 python3 evaluate_model.py outputs/b0_mitb0_imagenet | tee logs/evaluate_imagenet.txt
 
 # 5. предсказание на одной картинке
-python3 predict.py <DATA_ROOT>/test/0001TP_008550.png pred.png
+python3 predict.py <DATA_ROOT>/test/0001TP_008550.png pred.png --model weights/segformer-b0-camvid
 ```
 
-`evaluate_model.py` и `predict.py` принимают путь к любой папке с весами или к чекпоинту.
+`evaluate_model.py` (позиционный аргумент) и `predict.py` (`--model`) принимают путь к любой
+папке с весами или к чекпоинту; по умолчанию — `outputs/<RUN_NAME>` текущего эксперимента.
+Флаг `--flip` включает flip-TTA в обоих скриптах.
+
+Пример результата `predict.py` (оверлей предсказания на кадре test `0001TP_008550`):
+
+![predict example](results/predict_example.png)
 
 ---
 
 ## 8. Результат работы
 
 - **Код** дообучения (`train.py`) и инференса/оценки (`evaluate_model.py`, `predict.py`).
-- **Веса** основной модели — [GitHub Release](_TODO: ссылка_) (`config.json`,
-  `model.safetensors`, `preprocessor_config.json`), загрузка:
+- **Веса** основной модели (`EXP=main`, лучший чекпоинт, эпоха 90) — в репозитории,
+  `weights/segformer-b0-camvid/` (`config.json`, `model.safetensors` 15 МБ,
+  `preprocessor_config.json`). Загрузка:
   ```python
   from transformers import AutoImageProcessor, AutoModelForSemanticSegmentation
-  processor = AutoImageProcessor.from_pretrained("segformer-b0-camvid")
-  model = AutoModelForSemanticSegmentation.from_pretrained("segformer-b0-camvid")
+  processor = AutoImageProcessor.from_pretrained("weights/segformer-b0-camvid")
+  model = AutoModelForSemanticSegmentation.from_pretrained("weights/segformer-b0-camvid")
   ```
+  Проверка: `evaluate_model.py` на этих весах даёт test mIoU 0.709.
 - **Показатели** — `results/metrics.json`, `results/metrics_flip.json` (mIoU, accuracy,
   IoU по классам для val и test), `results/train_log.json` (история обучения),
-  логи в `logs/`, примеры в `results/predictions/`.
+  `results/metrics_old.json` и `results/metrics_imagenet.json` (сравнительные эксперименты),
+  логи в `logs/`, примеры в `results/predictions/` и `results/predictions_flip/`.
 

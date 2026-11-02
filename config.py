@@ -3,7 +3,7 @@ from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent
 
-DATA_ROOT = Path("/home/alessandra/work_task/data/CamVid")
+DATA_ROOT = Path("/home/magic/work_task/data/CamVid")
 SPLIT_DIRS = {
     "train": ("train", "trainannot"),
     "val": ("val", "valannot"),
@@ -51,12 +51,8 @@ FP16 = True
 SEED = 42
 
 RUN_NAME = "b0_cityscapes_512"
-TRAIN_AUG = "scale_crop"          # "scale_crop" | "resize"
+TRAIN_AUG = "scale_crop"
 
-# Выбор эксперимента: EXP=old python3 train.py  (по умолчанию EXP=main)
-#   main     — Cityscapes-инициализация, CE + Lovász, scale-crop, вход с сохранением пропорций
-#   old      — исходный вариант: ImageNet-энкодер, CE, растяжение кадра в квадрат 512×512, 50 эпох
-#   imagenet — всё как в main, но энкодер ImageNet (mit-b0) и случайная голова
 EXPERIMENT = os.environ.get("EXP", "main")
 if EXPERIMENT == "old":
     CHECKPOINT = "nvidia/mit-b0"

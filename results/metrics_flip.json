@@ -1,0 +1,50 @@
+{
+  "model_dir": "/home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512",
+  "flip": true,
+  "val": {
+    "mean_iou": 0.8019524327592902,
+    "mean_accuracy": 0.8657037275719783,
+    "overall_accuracy": 0.9600605728916899,
+    "per_class_iou": {
+      "Sky": 0.9434290926172682,
+      "Building": 0.9244508933164157,
+      "Pole": 0.1890521352995998,
+      "Road": 0.9763634531363906,
+      "Sidewalk": 0.9049512962556441,
+      "Tree": 0.9204275401012975,
+      "SignSymbol": 0.7297901177858306,
+      "Fence": 0.7759361336938073,
+      "Car": 0.903805565628109,
+      "Pedestrian": 0.694043958709346,
+      "Bicyclist": 0.8592265738084824
+    },
+    "n_images": 101,
+    "resolution": [
+      360,
+      480
+    ]
+  },
+  "test": {
+    "mean_iou": 0.7297038113020814,
+    "mean_accuracy": 0.8102000396226028,
+    "overall_accuracy": 0.9342688374552484,
+    "per_class_iou": {
+      "Sky": 0.9220190712074303,
+      "Building": 0.8664634959115823,
+      "Pole": 0.3378341454910579,
+      "Road": 0.9634472068046719,
+      "Sidewalk": 0.8710528829104295,
+      "Tree": 0.7996238846579617,
+      "SignSymbol": 0.5334957270162191,
+      "Fence": 0.5219163638417653,
+      "Car": 0.9208645912610687,
+      "Pedestrian": 0.6504754222727314,
+      "Bicyclist": 0.6395491329479769
+    },
+    "n_images": 233,
+    "resolution": [
+      360,
+      480
+    ]
+  }
+}
