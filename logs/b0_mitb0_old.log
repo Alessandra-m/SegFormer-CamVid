@@ -1,0 +1,57 @@
+Some weights of SegformerForSemanticSegmentation were not initialized from the model checkpoint at nvidia/mit-b0 and are newly initialized: ['decode_head.batch_norm.bias', 'decode_head.batch_norm.num_batches_tracked', 'decode_head.batch_norm.running_mean', 'decode_head.batch_norm.running_var', 'decode_head.batch_norm.weight', 'decode_head.classifier.bias', 'decode_head.classifier.weight', 'decode_head.linear_c.0.proj.bias', 'decode_head.linear_c.0.proj.weight', 'decode_head.linear_c.1.proj.bias', 'decode_head.linear_c.1.proj.weight', 'decode_head.linear_c.2.proj.bias', 'decode_head.linear_c.2.proj.weight', 'decode_head.linear_c.3.proj.bias', 'decode_head.linear_c.3.proj.weight', 'decode_head.linear_fuse.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Classes (excluding ignore): 11 -> {0: 'Sky', 1: 'Building', 2: 'Pole', 3: 'Road', 4: 'Sidewalk', 5: 'Tree', 6: 'SignSymbol', 7: 'Fence', 8: 'Car', 9: 'Pedestrian', 10: 'Bicyclist'}
+train: 367 | val: 101 | eval input: (512, 512) | crop: 512
+epoch   1/50 | train loss 1.1013 | val loss 0.7029 | val mIoU 0.3674 | best 0.3674 | 12s
+epoch   2/50 | train loss 0.5993 | val loss 0.5759 | val mIoU 0.4053 | best 0.4053 | 12s
+epoch   3/50 | train loss 0.4699 | val loss 0.4569 | val mIoU 0.4309 | best 0.4309 | 12s
+epoch   4/50 | train loss 0.3992 | val loss 0.3803 | val mIoU 0.4755 | best 0.4755 | 12s
+epoch   5/50 | train loss 0.3435 | val loss 0.3385 | val mIoU 0.5068 | best 0.5068 | 12s
+epoch   6/50 | train loss 0.3079 | val loss 0.2814 | val mIoU 0.5612 | best 0.5612 | 12s
+epoch   7/50 | train loss 0.2783 | val loss 0.2539 | val mIoU 0.6249 | best 0.6249 | 12s
+epoch   8/50 | train loss 0.2548 | val loss 0.2248 | val mIoU 0.6332 | best 0.6332 | 12s
+epoch   9/50 | train loss 0.2402 | val loss 0.2182 | val mIoU 0.6553 | best 0.6553 | 12s
+epoch  10/50 | train loss 0.2288 | val loss 0.2329 | val mIoU 0.6578 | best 0.6578 | 12s
+epoch  11/50 | train loss 0.2136 | val loss 0.1995 | val mIoU 0.6650 | best 0.6650 | 12s
+epoch  12/50 | train loss 0.2056 | val loss 0.2053 | val mIoU 0.6744 | best 0.6744 | 12s
+epoch  13/50 | train loss 0.1993 | val loss 0.1941 | val mIoU 0.6841 | best 0.6841 | 12s
+epoch  14/50 | train loss 0.1921 | val loss 0.1963 | val mIoU 0.6764 | best 0.6841 | 12s
+epoch  15/50 | train loss 0.1876 | val loss 0.1926 | val mIoU 0.6796 | best 0.6841 | 12s
+epoch  16/50 | train loss 0.1786 | val loss 0.1861 | val mIoU 0.6921 | best 0.6921 | 12s
+epoch  17/50 | train loss 0.1728 | val loss 0.1843 | val mIoU 0.6942 | best 0.6942 | 12s
+epoch  18/50 | train loss 0.1697 | val loss 0.1778 | val mIoU 0.6975 | best 0.6975 | 12s
+epoch  19/50 | train loss 0.1628 | val loss 0.1726 | val mIoU 0.6945 | best 0.6975 | 12s
+epoch  20/50 | train loss 0.1616 | val loss 0.1782 | val mIoU 0.7031 | best 0.7031 | 12s
+epoch  21/50 | train loss 0.1562 | val loss 0.1857 | val mIoU 0.6928 | best 0.7031 | 12s
+epoch  22/50 | train loss 0.1587 | val loss 0.1752 | val mIoU 0.6936 | best 0.7031 | 12s
+epoch  23/50 | train loss 0.1510 | val loss 0.1769 | val mIoU 0.6891 | best 0.7031 | 12s
+epoch  24/50 | train loss 0.1506 | val loss 0.1711 | val mIoU 0.7053 | best 0.7053 | 12s
+epoch  25/50 | train loss 0.1455 | val loss 0.1664 | val mIoU 0.7043 | best 0.7053 | 12s
+epoch  26/50 | train loss 0.1473 | val loss 0.1683 | val mIoU 0.7088 | best 0.7088 | 12s
+epoch  27/50 | train loss 0.1428 | val loss 0.1724 | val mIoU 0.7092 | best 0.7092 | 12s
+epoch  28/50 | train loss 0.1434 | val loss 0.1658 | val mIoU 0.7124 | best 0.7124 | 12s
+epoch  29/50 | train loss 0.1391 | val loss 0.1628 | val mIoU 0.7165 | best 0.7165 | 12s
+epoch  30/50 | train loss 0.1382 | val loss 0.1618 | val mIoU 0.7139 | best 0.7165 | 12s
+epoch  31/50 | train loss 0.1346 | val loss 0.1617 | val mIoU 0.7188 | best 0.7188 | 12s
+epoch  32/50 | train loss 0.1351 | val loss 0.1644 | val mIoU 0.7102 | best 0.7188 | 12s
+epoch  33/50 | train loss 0.1341 | val loss 0.1637 | val mIoU 0.7059 | best 0.7188 | 12s
+epoch  34/50 | train loss 0.1332 | val loss 0.1652 | val mIoU 0.7107 | best 0.7188 | 12s
+epoch  35/50 | train loss 0.1312 | val loss 0.1614 | val mIoU 0.7160 | best 0.7188 | 12s
+epoch  36/50 | train loss 0.1302 | val loss 0.1609 | val mIoU 0.7199 | best 0.7199 | 12s
+epoch  37/50 | train loss 0.1300 | val loss 0.1649 | val mIoU 0.7153 | best 0.7199 | 13s
+epoch  38/50 | train loss 0.1262 | val loss 0.1626 | val mIoU 0.7128 | best 0.7199 | 12s
+epoch  39/50 | train loss 0.1291 | val loss 0.1624 | val mIoU 0.7154 | best 0.7199 | 12s
+epoch  40/50 | train loss 0.1288 | val loss 0.1616 | val mIoU 0.7159 | best 0.7199 | 12s
+epoch  41/50 | train loss 0.1281 | val loss 0.1646 | val mIoU 0.7084 | best 0.7199 | 13s
+epoch  42/50 | train loss 0.1233 | val loss 0.1638 | val mIoU 0.7091 | best 0.7199 | 12s
+epoch  43/50 | train loss 0.1256 | val loss 0.1615 | val mIoU 0.7149 | best 0.7199 | 12s
+epoch  44/50 | train loss 0.1228 | val loss 0.1622 | val mIoU 0.7180 | best 0.7199 | 12s
+epoch  45/50 | train loss 0.1240 | val loss 0.1631 | val mIoU 0.7195 | best 0.7199 | 12s
+epoch  46/50 | train loss 0.1244 | val loss 0.1622 | val mIoU 0.7170 | best 0.7199 | 12s
+epoch  47/50 | train loss 0.1239 | val loss 0.1610 | val mIoU 0.7196 | best 0.7199 | 12s
+epoch  48/50 | train loss 0.1217 | val loss 0.1600 | val mIoU 0.7192 | best 0.7199 | 12s
+epoch  49/50 | train loss 0.1230 | val loss 0.1595 | val mIoU 0.7211 | best 0.7211 | 12s
+epoch  50/50 | train loss 0.1216 | val loss 0.1600 | val mIoU 0.7185 | best 0.7211 | 12s
+
+Done. Best checkpoint /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_mitb0_old/checkpoint-4508 saved to /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_mitb0_old
+best val mIoU (during training): 0.7211

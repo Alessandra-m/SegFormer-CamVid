@@ -1,0 +1,32 @@
+model: outputs/b0_mitb0_old | input: 512x512 | flip TTA: False
+  val: 50/101 processed
+  val: 100/101 processed
+  test: 50/233 processed
+  test: 100/233 processed
+  test: 150/233 processed
+  test: 200/233 processed
+
+=== val (101 images, 360x480) ===
+mIoU            : 0.7211
+mean accuracy   : 0.8040
+overall accuracy: 0.9465
+
+=== test (233 images, 360x480) ===
+mIoU            : 0.6361
+mean accuracy   : 0.7258
+overall accuracy: 0.9099
+
+per-class IoU        val     test
+    Sky              0.9433  0.9172
+    Building         0.9070  0.8262
+    Pole             0.1077  0.1791
+    Road             0.9698  0.9362
+    Sidewalk         0.8686  0.7883
+    Tree             0.9174  0.7730
+    SignSymbol       0.5448  0.4185
+    Fence            0.6868  0.3582
+    Car              0.8740  0.8156
+    Pedestrian       0.4381  0.4916
+    Bicyclist        0.6741  0.4929
+
+Examples saved to outputs/b0_mitb0_old/predictions (best_*.png, worst_*.png)

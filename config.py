@@ -1,8 +1,9 @@
+import os
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent
 
-DATA_ROOT = Path("/home/magic/work_task/data/CamVid")
+DATA_ROOT = Path("/home/alessandra/work_task/data/CamVid")
 SPLIT_DIRS = {
     "train": ("train", "trainannot"),
     "val": ("val", "valannot"),
@@ -49,8 +50,32 @@ NUM_WORKERS = 4
 FP16 = True
 SEED = 42
 
-OUTPUTS_DIR = PROJECT_DIR / "outputs"
 RUN_NAME = "b0_cityscapes_512"
+TRAIN_AUG = "scale_crop"          # "scale_crop" | "resize"
+
+# Выбор эксперимента: EXP=old python3 train.py  (по умолчанию EXP=main)
+#   main     — Cityscapes-инициализация, CE + Lovász, scale-crop, вход с сохранением пропорций
+#   old      — исходный вариант: ImageNet-энкодер, CE, растяжение кадра в квадрат 512×512, 50 эпох
+#   imagenet — всё как в main, но энкодер ImageNet (mit-b0) и случайная голова
+EXPERIMENT = os.environ.get("EXP", "main")
+if EXPERIMENT == "old":
+    CHECKPOINT = "nvidia/mit-b0"
+    HEAD_INIT_FROM = {}
+    EVAL_SIZE = (512, 512)
+    TRAIN_AUG = "resize"
+    LOSS = "ce"
+    HEAD_LR_MULT = 1
+    WARMUP_STEPS = 0
+    NUM_EPOCHS = 50
+    RUN_NAME = "b0_mitb0_old"
+elif EXPERIMENT == "imagenet":
+    CHECKPOINT = "nvidia/mit-b0"
+    HEAD_INIT_FROM = {}
+    RUN_NAME = "b0_mitb0_imagenet"
+elif EXPERIMENT != "main":
+    raise ValueError(f"Unknown EXP={EXPERIMENT!r}, expected main | old | imagenet")
+
+OUTPUTS_DIR = PROJECT_DIR / "outputs"
 OUTPUT_DIR = OUTPUTS_DIR / RUN_NAME
 N_BEST = 3
 N_WORST = 3

@@ -1,0 +1,32 @@
+model: /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512 | input: 512x683 | flip TTA: False
+  val: 50/101 processed
+  val: 100/101 processed
+  test: 50/233 processed
+  test: 100/233 processed
+  test: 150/233 processed
+  test: 200/233 processed
+
+=== val (101 images, 360x480) ===
+mIoU            : 0.7797
+mean accuracy   : 0.8542
+overall accuracy: 0.9556
+
+=== test (233 images, 360x480) ===
+mIoU            : 0.7093
+mean accuracy   : 0.8003
+overall accuracy: 0.9276
+
+per-class IoU        val     test
+    Sky              0.9338  0.9161
+    Building         0.9176  0.8563
+    Pole             0.1591  0.3287
+    Road             0.9753  0.9560
+    Sidewalk         0.8983  0.8493
+    Tree             0.9151  0.7892
+    SignSymbol       0.6787  0.5129
+    Fence            0.7619  0.5151
+    Car              0.8670  0.8986
+    Pedestrian       0.6412  0.6069
+    Bicyclist        0.8289  0.5736
+
+Examples saved to /home/alessandra/work_task/SegFormer-CamVid-main/outputs/b0_cityscapes_512/predictions (best_*.png, worst_*.png)

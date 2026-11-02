@@ -149,13 +149,25 @@ class CamVidDataset(torch.utils.data.Dataset):
         crop = np.s_[top:top + C.CROP_SIZE, left:left + C.CROP_SIZE]
         return Image.fromarray(image[crop]), label[crop].astype(np.int64)
 
+    def _resize(self, image, label):
+        """Растянуть кадр в EVAL_SIZE без сохранения пропорций (старый вариант)."""
+        h, w = C.EVAL_SIZE
+        image = image.resize((w, h), Image.BILINEAR)
+        label = np.array(Image.fromarray(label.astype(np.uint8)).resize((w, h), Image.NEAREST))
+        return image, label.astype(np.int64)
+
     def __getitem__(self, i):
         img_path, lbl_path = self.pairs[i]
         image = Image.open(img_path).convert("RGB")
         label = self._load_label_index(lbl_path)
 
         if self.train:
-            image, label = self._random_scale_crop(image, label)
+            if C.TRAIN_AUG == "scale_crop":
+                image, label = self._random_scale_crop(image, label)
+            elif C.TRAIN_AUG == "resize":
+                image, label = self._resize(image, label)
+            else:
+                raise ValueError(f"Unknown TRAIN_AUG: {C.TRAIN_AUG}")
             image = self.jitter(image)
             if random.random() < C.HFLIP_PROB:
                 image = image.transpose(Image.FLIP_LEFT_RIGHT)
