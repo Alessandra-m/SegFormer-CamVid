@@ -113,24 +113,7 @@ class SegTrainer(Trainer):
         return (loss, outputs) if return_outputs else loss
 
 
-def main():
-    hf_logging.disable_progress_bar()
-    set_seed(C.SEED)
-    mapping = build_label_mapping()
-    num_labels = mapping["num_labels"]
-    print(f"Classes (excluding ignore): {num_labels} -> {mapping['id2label']}")
-
-    processor = AutoImageProcessor.from_pretrained(
-        C.CHECKPOINT,
-        do_reduce_labels=False,
-        size={"height": C.EVAL_SIZE[0], "width": C.EVAL_SIZE[1]},
-    )
-    model = build_model(mapping)
-
-    train_ds = CamVidDataset("train", processor, mapping, train=True)
-    val_ds = CamVidDataset("val", processor, mapping, train=False)
-    print(f"train: {len(train_ds)} | val: {len(val_ds)} | eval input: {C.EVAL_SIZE} | crop: {C.CROP_SIZE}")
-
+def make_compute_metrics(num_labels):
     metric = evaluate.load("mean_iou")
 
     def compute_metrics(eval_pred):
@@ -151,6 +134,27 @@ def main():
             "mean_accuracy": float(res["mean_accuracy"]),
             "overall_accuracy": float(res["overall_accuracy"]),
         }
+
+    return compute_metrics
+
+
+def main():
+    hf_logging.disable_progress_bar()
+    set_seed(C.SEED)
+    mapping = build_label_mapping()
+    num_labels = mapping["num_labels"]
+    print(f"Classes (excluding ignore): {num_labels} -> {mapping['id2label']}")
+
+    processor = AutoImageProcessor.from_pretrained(
+        C.CHECKPOINT,
+        do_reduce_labels=False,
+        size={"height": C.EVAL_SIZE[0], "width": C.EVAL_SIZE[1]},
+    )
+    model = build_model(mapping)
+
+    train_ds = CamVidDataset("train", processor, mapping, train=True)
+    val_ds = CamVidDataset("val", processor, mapping, train=False)
+    print(f"train: {len(train_ds)} | val: {len(val_ds)} | eval input: {C.EVAL_SIZE} | crop: {C.CROP_SIZE}")
 
     total_steps = math.ceil(len(train_ds) / C.TRAIN_BATCH_SIZE) * C.NUM_EPOCHS
     args = TrainingArguments(
@@ -178,7 +182,7 @@ def main():
         train_dataset=train_ds,
         eval_dataset=val_ds,
         data_collator=collate_fn,
-        compute_metrics=compute_metrics,
+        compute_metrics=make_compute_metrics(num_labels),
         optimizers=build_optimizer(model, total_steps),
         loss_fn=build_loss(),
     )

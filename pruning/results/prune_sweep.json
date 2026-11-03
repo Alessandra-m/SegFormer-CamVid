@@ -1,0 +1,388 @@
+{
+  "args": {
+    "targets": [
+      "mlp",
+      "heads",
+      "decoder",
+      "residual4"
+    ],
+    "ratios": [
+      0.1,
+      0.25,
+      0.5,
+      0.75
+    ],
+    "importance": [
+      "l1",
+      "random"
+    ],
+    "split": "val",
+    "compile": true,
+    "tag": "sweep"
+  },
+  "baseline": {
+    "target": "baseline",
+    "ratio": 0.0,
+    "importance": "\u2014",
+    "shape": "original",
+    "params_M": 3.716971,
+    "gmacs": 4.93771392,
+    "miou": 0.7733774897327308,
+    "latency_fp32_ms": 7.330783843994141,
+    "latency_compile_ms": 3.378048062324524
+  },
+  "rows": [
+    {
+      "target": "mlp",
+      "ratio": 0.1,
+      "importance": "l1",
+      "shape": "Mix-FFN hidden 112/224/576/920",
+      "params_M": 3.554523,
+      "gmacs": 4.840248,
+      "miou": 0.7329972914360106,
+      "latency_fp32_ms": 7.1910400390625,
+      "latency_compile_ms": 3.33516788482666
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.25,
+      "importance": "l1",
+      "shape": "Mix-FFN hidden 96/192/480/768",
+      "params_M": 3.320683,
+      "gmacs": 4.71925056,
+      "miou": 0.6836185006989569,
+      "latency_fp32_ms": 6.956031799316406,
+      "latency_compile_ms": 3.4179519414901733
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.5,
+      "importance": "l1",
+      "shape": "Mix-FFN hidden 64/128/320/512",
+      "params_M": 2.924395,
+      "gmacs": 4.5007872,
+      "miou": 0.3653261302706364,
+      "latency_fp32_ms": 6.682672023773193,
+      "latency_compile_ms": 3.047424077987671
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.75,
+      "importance": "l1",
+      "shape": "Mix-FFN hidden 32/64/160/256",
+      "params_M": 2.528107,
+      "gmacs": 4.28232384,
+      "miou": 0.11218899046680303,
+      "latency_fp32_ms": 6.869935989379883,
+      "latency_compile_ms": 2.860032081604004
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.1,
+      "importance": "random",
+      "shape": "Mix-FFN hidden 112/224/576/920",
+      "params_M": 3.554523,
+      "gmacs": 4.840248,
+      "miou": 0.7352212738264234,
+      "latency_fp32_ms": 7.203775882720947,
+      "latency_compile_ms": 3.3566720485687256
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.25,
+      "importance": "random",
+      "shape": "Mix-FFN hidden 96/192/480/768",
+      "params_M": 3.320683,
+      "gmacs": 4.71925056,
+      "miou": 0.6305826147454137,
+      "latency_fp32_ms": 6.957056045532227,
+      "latency_compile_ms": 3.2481279373168945
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.5,
+      "importance": "random",
+      "shape": "Mix-FFN hidden 64/128/320/512",
+      "params_M": 2.924395,
+      "gmacs": 4.5007872,
+      "miou": 0.3966137783173859,
+      "latency_fp32_ms": 6.61078405380249,
+      "latency_compile_ms": 3.05350399017334
+    },
+    {
+      "target": "mlp",
+      "ratio": 0.75,
+      "importance": "random",
+      "shape": "Mix-FFN hidden 32/64/160/256",
+      "params_M": 2.528107,
+      "gmacs": 4.28232384,
+      "miou": 0.03384044946323394,
+      "latency_fp32_ms": 6.559152126312256,
+      "latency_compile_ms": 2.835455894470215
+    },
+    {
+      "target": "heads",
+      "ratio": 0.1,
+      "importance": "l1",
+      "shape": "heads 1/1/4/7",
+      "params_M": 3.593515,
+      "gmacs": 4.80919296,
+      "miou": 0.760739782113717,
+      "latency_fp32_ms": 7.227392196655273,
+      "latency_compile_ms": 3.4017279148101807
+    },
+    {
+      "target": "heads",
+      "ratio": 0.25,
+      "importance": "l1",
+      "shape": "heads 1/1/3/6",
+      "params_M": 3.486635,
+      "gmacs": 4.76116608,
+      "miou": 0.7519947332485448,
+      "latency_fp32_ms": 7.10041618347168,
+      "latency_compile_ms": 3.3771040439605713
+    },
+    {
+      "target": "heads",
+      "ratio": 0.5,
+      "importance": "l1",
+      "shape": "heads 1/1/2/4",
+      "params_M": 3.314027,
+      "gmacs": 4.69719552,
+      "miou": 0.7227157379702729,
+      "latency_fp32_ms": 7.061503887176514,
+      "latency_compile_ms": 3.4176000356674194
+    },
+    {
+      "target": "heads",
+      "ratio": 0.75,
+      "importance": "l1",
+      "shape": "heads 1/2/1/2",
+      "params_M": 3.157995,
+      "gmacs": 4.71371904,
+      "miou": 0.7438223754279375,
+      "latency_fp32_ms": 7.096320152282715,
+      "latency_compile_ms": 3.378175973892212
+    },
+    {
+      "target": "heads",
+      "ratio": 0.1,
+      "importance": "random",
+      "shape": "heads 1/1/4/7",
+      "params_M": 3.593515,
+      "gmacs": 4.80919296,
+      "miou": 0.7673187037772548,
+      "latency_fp32_ms": 7.210992097854614,
+      "latency_compile_ms": 3.398655891418457
+    },
+    {
+      "target": "heads",
+      "ratio": 0.25,
+      "importance": "random",
+      "shape": "heads 1/1/3/6",
+      "params_M": 3.486635,
+      "gmacs": 4.76116608,
+      "miou": 0.7595602606391947,
+      "latency_fp32_ms": 7.100912094116211,
+      "latency_compile_ms": 3.3955841064453125
+    },
+    {
+      "target": "heads",
+      "ratio": 0.5,
+      "importance": "random",
+      "shape": "heads 1/1/2/4",
+      "params_M": 3.314027,
+      "gmacs": 4.69719552,
+      "miou": 0.732929087152517,
+      "latency_fp32_ms": 7.06550407409668,
+      "latency_compile_ms": 3.353600025177002
+    },
+    {
+      "target": "heads",
+      "ratio": 0.75,
+      "importance": "random",
+      "shape": "heads 1/2/1/2",
+      "params_M": 3.157995,
+      "gmacs": 4.71371904,
+      "miou": 0.7395937525735413,
+      "latency_fp32_ms": 7.11628794670105,
+      "latency_compile_ms": 3.3515520095825195
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.1,
+      "importance": "l1",
+      "shape": "linear_c 224/224/224/224, width 224",
+      "params_M": 3.638603,
+      "gmacs": 4.24876416,
+      "miou": 0.7715450875587438,
+      "latency_fp32_ms": 7.010303974151611,
+      "latency_compile_ms": 3.254271984100342
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.25,
+      "importance": "l1",
+      "shape": "linear_c 192/192/192/192, width 192",
+      "params_M": 3.568427,
+      "gmacs": 3.648288,
+      "miou": 0.7557331925856389,
+      "latency_fp32_ms": 6.607408046722412,
+      "latency_compile_ms": 3.028991937637329
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.5,
+      "importance": "l1",
+      "shape": "linear_c 128/128/128/128, width 128",
+      "params_M": 3.452651,
+      "gmacs": 2.71275648,
+      "miou": 0.37642723669254907,
+      "latency_fp32_ms": 5.94483208656311,
+      "latency_compile_ms": 2.649888038635254
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.75,
+      "importance": "l1",
+      "shape": "linear_c 64/64/64/64, width 64",
+      "params_M": 3.369643,
+      "gmacs": 2.13111936,
+      "miou": 0.19774473731314124,
+      "latency_fp32_ms": 5.338111877441406,
+      "latency_compile_ms": 2.2865920066833496
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.1,
+      "importance": "random",
+      "shape": "linear_c 224/224/224/224, width 224",
+      "params_M": 3.638603,
+      "gmacs": 4.24876416,
+      "miou": 0.7610624279213027,
+      "latency_fp32_ms": 7.053760051727295,
+      "latency_compile_ms": 3.2522239685058594
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.25,
+      "importance": "random",
+      "shape": "linear_c 192/192/192/192, width 192",
+      "params_M": 3.568427,
+      "gmacs": 3.648288,
+      "miou": 0.7545212871620969,
+      "latency_fp32_ms": 6.608351945877075,
+      "latency_compile_ms": 3.0146560668945312
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.5,
+      "importance": "random",
+      "shape": "linear_c 128/128/128/128, width 128",
+      "params_M": 3.452651,
+      "gmacs": 2.71275648,
+      "miou": 0.6081507308678596,
+      "latency_fp32_ms": 5.890607833862305,
+      "latency_compile_ms": 2.630576014518738
+    },
+    {
+      "target": "decoder",
+      "ratio": 0.75,
+      "importance": "random",
+      "shape": "linear_c 64/64/64/64, width 64",
+      "params_M": 3.369643,
+      "gmacs": 2.13111936,
+      "miou": 0.28238848966780533,
+      "latency_fp32_ms": 5.334975957870483,
+      "latency_compile_ms": 2.3101439476013184
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.1,
+      "importance": "l1",
+      "shape": "stage4 C 224",
+      "params_M": 3.465547,
+      "gmacs": 4.89255552,
+      "miou": 0.7653753776803532,
+      "latency_fp32_ms": 7.347360134124756,
+      "latency_compile_ms": 3.4165760278701782
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.25,
+      "importance": "l1",
+      "shape": "stage4 C 192",
+      "params_M": 3.214123,
+      "gmacs": 4.84739712,
+      "miou": 0.753626285081473,
+      "latency_fp32_ms": 7.262207984924316,
+      "latency_compile_ms": 3.4303998947143555
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.5,
+      "importance": "l1",
+      "shape": "stage4 C 128",
+      "params_M": 2.711275,
+      "gmacs": 4.75708032,
+      "miou": 0.6842902737682797,
+      "latency_fp32_ms": 7.189455986022949,
+      "latency_compile_ms": 3.4026399850845337
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.75,
+      "importance": "l1",
+      "shape": "stage4 C 64",
+      "params_M": 2.208427,
+      "gmacs": 4.66676352,
+      "miou": 0.027808877298534308,
+      "latency_fp32_ms": 7.1393280029296875,
+      "latency_compile_ms": 3.362816095352173
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.1,
+      "importance": "random",
+      "shape": "stage4 C 224",
+      "params_M": 3.465547,
+      "gmacs": 4.89255552,
+      "miou": 0.768882251632525,
+      "latency_fp32_ms": 7.349247932434082,
+      "latency_compile_ms": 3.44268798828125
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.25,
+      "importance": "random",
+      "shape": "stage4 C 192",
+      "params_M": 3.214123,
+      "gmacs": 4.84739712,
+      "miou": 0.7496359180981282,
+      "latency_fp32_ms": 7.660527944564819,
+      "latency_compile_ms": 3.392944097518921
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.5,
+      "importance": "random",
+      "shape": "stage4 C 128",
+      "params_M": 2.711275,
+      "gmacs": 4.75708032,
+      "miou": 0.7108395842888103,
+      "latency_fp32_ms": 7.202287912368774,
+      "latency_compile_ms": 3.351456046104431
+    },
+    {
+      "target": "residual4",
+      "ratio": 0.75,
+      "importance": "random",
+      "shape": "stage4 C 64",
+      "params_M": 2.208427,
+      "gmacs": 4.66676352,
+      "miou": 0.16457561876788765,
+      "latency_fp32_ms": 7.137279987335205,
+      "latency_compile_ms": 3.3177599906921387
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+
+=== control: original ===
+before fine-tuning: test mIoU 0.6912
+epoch   1/30 | train loss 0.4304 | val loss 0.4208 | val mIoU 0.7693 | best 0.7693 | 25s
+epoch   2/30 | train loss 0.4230 | val loss 0.4165 | val mIoU 0.7726 | best 0.7726 | 10s
+epoch   3/30 | train loss 0.4182 | val loss 0.4367 | val mIoU 0.7634 | best 0.7726 | 10s
+epoch   4/30 | train loss 0.4224 | val loss 0.4450 | val mIoU 0.7635 | best 0.7726 | 9s
+epoch   5/30 | train loss 0.4201 | val loss 0.4198 | val mIoU 0.7634 | best 0.7726 | 10s
+epoch   6/30 | train loss 0.4255 | val loss 0.4342 | val mIoU 0.7683 | best 0.7726 | 9s
+epoch   7/30 | train loss 0.4143 | val loss 0.4307 | val mIoU 0.7710 | best 0.7726 | 9s
+epoch   8/30 | train loss 0.4165 | val loss 0.4400 | val mIoU 0.7626 | best 0.7726 | 9s
+epoch   9/30 | train loss 0.4156 | val loss 0.4218 | val mIoU 0.7700 | best 0.7726 | 10s
+epoch  10/30 | train loss 0.4139 | val loss 0.4347 | val mIoU 0.7615 | best 0.7726 | 9s
+epoch  11/30 | train loss 0.4025 | val loss 0.4397 | val mIoU 0.7594 | best 0.7726 | 10s
+epoch  12/30 | train loss 0.4037 | val loss 0.4493 | val mIoU 0.7588 | best 0.7726 | 10s
+epoch  13/30 | train loss 0.4019 | val loss 0.4238 | val mIoU 0.7739 | best 0.7739 | 10s
+epoch  14/30 | train loss 0.4029 | val loss 0.4505 | val mIoU 0.7546 | best 0.7739 | 10s
+epoch  15/30 | train loss 0.4026 | val loss 0.4110 | val mIoU 0.7719 | best 0.7739 | 10s
+epoch  16/30 | train loss 0.3930 | val loss 0.4241 | val mIoU 0.7659 | best 0.7739 | 10s
+epoch  17/30 | train loss 0.3929 | val loss 0.4249 | val mIoU 0.7684 | best 0.7739 | 9s
+epoch  18/30 | train loss 0.3853 | val loss 0.4276 | val mIoU 0.7675 | best 0.7739 | 10s
+epoch  19/30 | train loss 0.3869 | val loss 0.4286 | val mIoU 0.7676 | best 0.7739 | 10s
+epoch  20/30 | train loss 0.3776 | val loss 0.4429 | val mIoU 0.7645 | best 0.7739 | 9s
+epoch  21/30 | train loss 0.3888 | val loss 0.4555 | val mIoU 0.7614 | best 0.7739 | 10s
+epoch  22/30 | train loss 0.3882 | val loss 0.4435 | val mIoU 0.7664 | best 0.7739 | 9s
+epoch  23/30 | train loss 0.3854 | val loss 0.4493 | val mIoU 0.7596 | best 0.7739 | 10s
+epoch  24/30 | train loss 0.3827 | val loss 0.4430 | val mIoU 0.7679 | best 0.7739 | 9s
+epoch  25/30 | train loss 0.3788 | val loss 0.4348 | val mIoU 0.7695 | best 0.7739 | 9s
+epoch  26/30 | train loss 0.3903 | val loss 0.4400 | val mIoU 0.7689 | best 0.7739 | 10s
+epoch  27/30 | train loss 0.3874 | val loss 0.4452 | val mIoU 0.7661 | best 0.7739 | 9s
+epoch  28/30 | train loss 0.3780 | val loss 0.4476 | val mIoU 0.7672 | best 0.7739 | 9s
+epoch  29/30 | train loss 0.3863 | val loss 0.4396 | val mIoU 0.7696 | best 0.7739 | 10s
+epoch  30/30 | train loss 0.3878 | val loss 0.4399 | val mIoU 0.7681 | best 0.7739 | 9s
+W1102 16:23:41.009000 102093 torch/_inductor/utils.py:1806] [0/0] Not enough SMs to use max_autotune_gemm mode
+control: val 0.7739 (epoch 13) | test 0.6910 (before ft 0.6912) | params 3.717M | 4.94 GMACs | fp32 8.14 ms | compile 3.39 ms
+
+=== decoder0.25: linear_c 192/192/192/192, width 192 ===
+before fine-tuning: test mIoU 0.6479
+epoch   1/30 | train loss 0.4990 | val loss 0.4444 | val mIoU 0.7583 | best 0.7583 | 10s
+epoch   2/30 | train loss 0.4574 | val loss 0.4231 | val mIoU 0.7652 | best 0.7652 | 9s
+epoch   3/30 | train loss 0.4419 | val loss 0.4459 | val mIoU 0.7594 | best 0.7652 | 9s
+epoch   4/30 | train loss 0.4443 | val loss 0.4443 | val mIoU 0.7600 | best 0.7652 | 9s
+epoch   5/30 | train loss 0.4397 | val loss 0.4284 | val mIoU 0.7590 | best 0.7652 | 9s
+epoch   6/30 | train loss 0.4414 | val loss 0.4600 | val mIoU 0.7507 | best 0.7652 | 9s
+epoch   7/30 | train loss 0.4317 | val loss 0.4340 | val mIoU 0.7650 | best 0.7652 | 9s
+epoch   8/30 | train loss 0.4337 | val loss 0.4347 | val mIoU 0.7612 | best 0.7652 | 9s
+epoch   9/30 | train loss 0.4327 | val loss 0.4510 | val mIoU 0.7583 | best 0.7652 | 9s
+epoch  10/30 | train loss 0.4337 | val loss 0.4721 | val mIoU 0.7551 | best 0.7652 | 9s
+epoch  11/30 | train loss 0.4232 | val loss 0.4451 | val mIoU 0.7542 | best 0.7652 | 9s
+epoch  12/30 | train loss 0.4194 | val loss 0.4592 | val mIoU 0.7549 | best 0.7652 | 9s
+epoch  13/30 | train loss 0.4186 | val loss 0.4385 | val mIoU 0.7624 | best 0.7652 | 9s
+epoch  14/30 | train loss 0.4191 | val loss 0.4728 | val mIoU 0.7492 | best 0.7652 | 9s
+epoch  15/30 | train loss 0.4214 | val loss 0.4239 | val mIoU 0.7651 | best 0.7652 | 9s
+epoch  16/30 | train loss 0.4061 | val loss 0.4357 | val mIoU 0.7630 | best 0.7652 | 9s
+epoch  17/30 | train loss 0.4099 | val loss 0.4217 | val mIoU 0.7691 | best 0.7691 | 9s
+epoch  18/30 | train loss 0.3999 | val loss 0.4372 | val mIoU 0.7615 | best 0.7691 | 9s
+epoch  19/30 | train loss 0.4046 | val loss 0.4334 | val mIoU 0.7621 | best 0.7691 | 9s
+epoch  20/30 | train loss 0.3974 | val loss 0.4432 | val mIoU 0.7638 | best 0.7691 | 9s
+epoch  21/30 | train loss 0.4046 | val loss 0.4515 | val mIoU 0.7622 | best 0.7691 | 9s
+epoch  22/30 | train loss 0.4025 | val loss 0.4458 | val mIoU 0.7633 | best 0.7691 | 9s
+epoch  23/30 | train loss 0.3994 | val loss 0.4479 | val mIoU 0.7614 | best 0.7691 | 9s
+epoch  24/30 | train loss 0.4025 | val loss 0.4484 | val mIoU 0.7632 | best 0.7691 | 9s
+epoch  25/30 | train loss 0.3960 | val loss 0.4329 | val mIoU 0.7669 | best 0.7691 | 9s
+epoch  26/30 | train loss 0.4055 | val loss 0.4420 | val mIoU 0.7634 | best 0.7691 | 9s
+epoch  27/30 | train loss 0.4028 | val loss 0.4436 | val mIoU 0.7623 | best 0.7691 | 9s
+epoch  28/30 | train loss 0.3947 | val loss 0.4436 | val mIoU 0.7630 | best 0.7691 | 9s
+epoch  29/30 | train loss 0.4042 | val loss 0.4376 | val mIoU 0.7668 | best 0.7691 | 9s
+epoch  30/30 | train loss 0.3977 | val loss 0.4387 | val mIoU 0.7649 | best 0.7691 | 9s
+decoder0.25: val 0.7691 (epoch 17) | test 0.6875 (before ft 0.6479) | params 3.568M | 3.65 GMACs | fp32 7.77 ms | compile 2.99 ms
+
+=== decoder0.5: linear_c 128/128/128/128, width 128 ===
+before fine-tuning: test mIoU 0.2777
+epoch   1/30 | train loss 0.9129 | val loss 0.5217 | val mIoU 0.7400 | best 0.7400 | 9s
+epoch   2/30 | train loss 0.5561 | val loss 0.4589 | val mIoU 0.7527 | best 0.7527 | 9s
+epoch   3/30 | train loss 0.4926 | val loss 0.4551 | val mIoU 0.7500 | best 0.7527 | 9s
+epoch   4/30 | train loss 0.4797 | val loss 0.4555 | val mIoU 0.7532 | best 0.7532 | 9s
+epoch   5/30 | train loss 0.4752 | val loss 0.4383 | val mIoU 0.7546 | best 0.7546 | 9s
+epoch   6/30 | train loss 0.4711 | val loss 0.4584 | val mIoU 0.7496 | best 0.7546 | 9s
+epoch   7/30 | train loss 0.4616 | val loss 0.4326 | val mIoU 0.7647 | best 0.7647 | 8s
+epoch   8/30 | train loss 0.4603 | val loss 0.4462 | val mIoU 0.7622 | best 0.7647 | 9s
+epoch   9/30 | train loss 0.4537 | val loss 0.4428 | val mIoU 0.7620 | best 0.7647 | 9s
+epoch  10/30 | train loss 0.4564 | val loss 0.4463 | val mIoU 0.7560 | best 0.7647 | 9s
+epoch  11/30 | train loss 0.4419 | val loss 0.4453 | val mIoU 0.7580 | best 0.7647 | 9s
+epoch  12/30 | train loss 0.4379 | val loss 0.4425 | val mIoU 0.7585 | best 0.7647 | 9s
+epoch  13/30 | train loss 0.4370 | val loss 0.4345 | val mIoU 0.7672 | best 0.7672 | 9s
+epoch  14/30 | train loss 0.4394 | val loss 0.4554 | val mIoU 0.7481 | best 0.7672 | 9s
+epoch  15/30 | train loss 0.4408 | val loss 0.4262 | val mIoU 0.7616 | best 0.7672 | 9s
+epoch  16/30 | train loss 0.4255 | val loss 0.4285 | val mIoU 0.7630 | best 0.7672 | 9s
+epoch  17/30 | train loss 0.4244 | val loss 0.4317 | val mIoU 0.7653 | best 0.7672 | 8s
+epoch  18/30 | train loss 0.4251 | val loss 0.4216 | val mIoU 0.7669 | best 0.7672 | 9s
+epoch  19/30 | train loss 0.4191 | val loss 0.4359 | val mIoU 0.7625 | best 0.7672 | 9s
+epoch  20/30 | train loss 0.4141 | val loss 0.4430 | val mIoU 0.7611 | best 0.7672 | 9s
+epoch  21/30 | train loss 0.4234 | val loss 0.4609 | val mIoU 0.7549 | best 0.7672 | 9s
+epoch  22/30 | train loss 0.4189 | val loss 0.4447 | val mIoU 0.7591 | best 0.7672 | 9s
+epoch  23/30 | train loss 0.4189 | val loss 0.4439 | val mIoU 0.7586 | best 0.7672 | 9s
+epoch  24/30 | train loss 0.4140 | val loss 0.4374 | val mIoU 0.7616 | best 0.7672 | 9s
+epoch  25/30 | train loss 0.4155 | val loss 0.4358 | val mIoU 0.7655 | best 0.7672 | 9s
+epoch  26/30 | train loss 0.4233 | val loss 0.4393 | val mIoU 0.7643 | best 0.7672 | 9s
+epoch  27/30 | train loss 0.4174 | val loss 0.4444 | val mIoU 0.7599 | best 0.7672 | 9s
+epoch  28/30 | train loss 0.4096 | val loss 0.4442 | val mIoU 0.7593 | best 0.7672 | 9s
+epoch  29/30 | train loss 0.4157 | val loss 0.4348 | val mIoU 0.7657 | best 0.7672 | 9s
+epoch  30/30 | train loss 0.4118 | val loss 0.4351 | val mIoU 0.7640 | best 0.7672 | 9s
+decoder0.5: val 0.7672 (epoch 13) | test 0.6906 (before ft 0.2777) | params 3.453M | 2.71 GMACs | fp32 6.93 ms | compile 2.61 ms
+
+=== mlp0.25: Mix-FFN hidden 96/192/480/768 ===
+before fine-tuning: test mIoU 0.6247
+epoch   1/30 | train loss 0.5741 | val loss 0.4758 | val mIoU 0.7372 | best 0.7372 | 17s
+epoch   2/30 | train loss 0.5158 | val loss 0.4733 | val mIoU 0.7406 | best 0.7406 | 9s
+epoch   3/30 | train loss 0.4861 | val loss 0.4511 | val mIoU 0.7517 | best 0.7517 | 9s
+epoch   4/30 | train loss 0.4763 | val loss 0.4561 | val mIoU 0.7494 | best 0.7517 | 9s
+epoch   5/30 | train loss 0.4711 | val loss 0.4443 | val mIoU 0.7477 | best 0.7517 | 9s
+epoch   6/30 | train loss 0.4760 | val loss 0.4626 | val mIoU 0.7452 | best 0.7517 | 9s
+epoch   7/30 | train loss 0.4600 | val loss 0.4312 | val mIoU 0.7597 | best 0.7597 | 9s
+epoch   8/30 | train loss 0.4636 | val loss 0.4509 | val mIoU 0.7504 | best 0.7597 | 9s
+epoch   9/30 | train loss 0.4556 | val loss 0.4365 | val mIoU 0.7605 | best 0.7605 | 9s
+epoch  10/30 | train loss 0.4538 | val loss 0.4465 | val mIoU 0.7486 | best 0.7605 | 9s
+epoch  11/30 | train loss 0.4431 | val loss 0.4569 | val mIoU 0.7440 | best 0.7605 | 9s
+epoch  12/30 | train loss 0.4400 | val loss 0.4495 | val mIoU 0.7509 | best 0.7605 | 9s
+epoch  13/30 | train loss 0.4402 | val loss 0.4360 | val mIoU 0.7616 | best 0.7616 | 9s
+epoch  14/30 | train loss 0.4399 | val loss 0.4498 | val mIoU 0.7557 | best 0.7616 | 9s
+epoch  15/30 | train loss 0.4377 | val loss 0.4272 | val mIoU 0.7626 | best 0.7626 | 9s
+epoch  16/30 | train loss 0.4303 | val loss 0.4405 | val mIoU 0.7574 | best 0.7626 | 9s
+epoch  17/30 | train loss 0.4259 | val loss 0.4346 | val mIoU 0.7602 | best 0.7626 | 9s
+epoch  18/30 | train loss 0.4199 | val loss 0.4362 | val mIoU 0.7588 | best 0.7626 | 9s
+epoch  19/30 | train loss 0.4209 | val loss 0.4454 | val mIoU 0.7518 | best 0.7626 | 9s
+epoch  20/30 | train loss 0.4098 | val loss 0.4387 | val mIoU 0.7591 | best 0.7626 | 9s
+epoch  21/30 | train loss 0.4212 | val loss 0.4431 | val mIoU 0.7593 | best 0.7626 | 9s
+epoch  22/30 | train loss 0.4208 | val loss 0.4397 | val mIoU 0.7590 | best 0.7626 | 9s
+epoch  23/30 | train loss 0.4152 | val loss 0.4438 | val mIoU 0.7543 | best 0.7626 | 9s
+epoch  24/30 | train loss 0.4157 | val loss 0.4431 | val mIoU 0.7573 | best 0.7626 | 9s
+epoch  25/30 | train loss 0.4115 | val loss 0.4351 | val mIoU 0.7603 | best 0.7626 | 9s
+epoch  26/30 | train loss 0.4181 | val loss 0.4380 | val mIoU 0.7588 | best 0.7626 | 9s
+epoch  27/30 | train loss 0.4197 | val loss 0.4481 | val mIoU 0.7539 | best 0.7626 | 9s
+epoch  28/30 | train loss 0.4066 | val loss 0.4429 | val mIoU 0.7587 | best 0.7626 | 9s
+epoch  29/30 | train loss 0.4178 | val loss 0.4383 | val mIoU 0.7608 | best 0.7626 | 9s
+epoch  30/30 | train loss 0.4166 | val loss 0.4383 | val mIoU 0.7587 | best 0.7626 | 9s
+mlp0.25: val 0.7626 (epoch 15) | test 0.6803 (before ft 0.6247) | params 3.321M | 4.72 GMACs | fp32 8.14 ms | compile 3.23 ms
+
+=== heads0.5_residual40.25: heads 1/1/2/4; stage4 C 192 ===
+before fine-tuning: test mIoU 0.5838
+epoch   1/30 | train loss 0.5566 | val loss 0.4477 | val mIoU 0.7457 | best 0.7457 | 10s
+epoch   2/30 | train loss 0.4919 | val loss 0.4405 | val mIoU 0.7549 | best 0.7549 | 9s
+epoch   3/30 | train loss 0.4671 | val loss 0.4663 | val mIoU 0.7419 | best 0.7549 | 9s
+epoch   4/30 | train loss 0.4648 | val loss 0.4498 | val mIoU 0.7517 | best 0.7549 | 9s
+epoch   5/30 | train loss 0.4604 | val loss 0.4349 | val mIoU 0.7544 | best 0.7549 | 9s
+epoch   6/30 | train loss 0.4667 | val loss 0.4496 | val mIoU 0.7538 | best 0.7549 | 9s
+epoch   7/30 | train loss 0.4473 | val loss 0.4214 | val mIoU 0.7632 | best 0.7632 | 9s
+epoch   8/30 | train loss 0.4578 | val loss 0.4432 | val mIoU 0.7577 | best 0.7632 | 9s
+epoch   9/30 | train loss 0.4462 | val loss 0.4490 | val mIoU 0.7587 | best 0.7632 | 9s
+epoch  10/30 | train loss 0.4459 | val loss 0.4480 | val mIoU 0.7584 | best 0.7632 | 9s
+epoch  11/30 | train loss 0.4354 | val loss 0.4408 | val mIoU 0.7535 | best 0.7632 | 9s
+epoch  12/30 | train loss 0.4330 | val loss 0.4456 | val mIoU 0.7578 | best 0.7632 | 9s
+epoch  13/30 | train loss 0.4303 | val loss 0.4231 | val mIoU 0.7665 | best 0.7665 | 9s
+epoch  14/30 | train loss 0.4324 | val loss 0.4365 | val mIoU 0.7565 | best 0.7665 | 9s
+epoch  15/30 | train loss 0.4294 | val loss 0.4159 | val mIoU 0.7654 | best 0.7665 | 9s
+epoch  16/30 | train loss 0.4214 | val loss 0.4291 | val mIoU 0.7605 | best 0.7665 | 9s
+epoch  17/30 | train loss 0.4158 | val loss 0.4251 | val mIoU 0.7672 | best 0.7672 | 9s
+epoch  18/30 | train loss 0.4101 | val loss 0.4153 | val mIoU 0.7686 | best 0.7686 | 9s
+epoch  19/30 | train loss 0.4129 | val loss 0.4265 | val mIoU 0.7661 | best 0.7686 | 9s
+epoch  20/30 | train loss 0.4066 | val loss 0.4323 | val mIoU 0.7629 | best 0.7686 | 9s
+epoch  21/30 | train loss 0.4144 | val loss 0.4314 | val mIoU 0.7639 | best 0.7686 | 9s
+epoch  22/30 | train loss 0.4148 | val loss 0.4238 | val mIoU 0.7673 | best 0.7686 | 9s
+epoch  23/30 | train loss 0.4107 | val loss 0.4311 | val mIoU 0.7632 | best 0.7686 | 9s
+epoch  24/30 | train loss 0.4097 | val loss 0.4341 | val mIoU 0.7646 | best 0.7686 | 9s
+epoch  25/30 | train loss 0.4049 | val loss 0.4312 | val mIoU 0.7660 | best 0.7686 | 9s
+epoch  26/30 | train loss 0.4166 | val loss 0.4279 | val mIoU 0.7681 | best 0.7686 | 9s
+epoch  27/30 | train loss 0.4120 | val loss 0.4323 | val mIoU 0.7644 | best 0.7686 | 9s
+epoch  28/30 | train loss 0.4012 | val loss 0.4313 | val mIoU 0.7660 | best 0.7686 | 9s
+epoch  29/30 | train loss 0.4119 | val loss 0.4298 | val mIoU 0.7673 | best 0.7686 | 9s
+epoch  30/30 | train loss 0.4063 | val loss 0.4286 | val mIoU 0.7668 | best 0.7686 | 9s
+heads0.5_residual40.25: val 0.7686 (epoch 18) | test 0.6850 (before ft 0.5838) | params 2.877M | 4.62 GMACs | fp32 8.17 ms | compile 3.33 ms
+
+=== decoder0.5_heads0.5_residual40.25: linear_c 128/128/128/128, width 128; heads 1/1/2/4; stage4 C 192 ===
+before fine-tuning: test mIoU 0.2433
+epoch   1/30 | train loss 1.0902 | val loss 0.5963 | val mIoU 0.7033 | best 0.7033 | 9s
+epoch   2/30 | train loss 0.6370 | val loss 0.5184 | val mIoU 0.7242 | best 0.7242 | 8s
+epoch   3/30 | train loss 0.5451 | val loss 0.5131 | val mIoU 0.7252 | best 0.7252 | 9s
+epoch   4/30 | train loss 0.5241 | val loss 0.4937 | val mIoU 0.7375 | best 0.7375 | 9s
+epoch   5/30 | train loss 0.5196 | val loss 0.4674 | val mIoU 0.7431 | best 0.7431 | 9s
+epoch   6/30 | train loss 0.5122 | val loss 0.4941 | val mIoU 0.7306 | best 0.7431 | 9s
+epoch   7/30 | train loss 0.4936 | val loss 0.4738 | val mIoU 0.7422 | best 0.7431 | 8s
+epoch   8/30 | train loss 0.4984 | val loss 0.4631 | val mIoU 0.7473 | best 0.7473 | 8s
+epoch   9/30 | train loss 0.4839 | val loss 0.4722 | val mIoU 0.7470 | best 0.7473 | 8s
+epoch  10/30 | train loss 0.4880 | val loss 0.4686 | val mIoU 0.7433 | best 0.7473 | 9s
+epoch  11/30 | train loss 0.4728 | val loss 0.4898 | val mIoU 0.7323 | best 0.7473 | 8s
+epoch  12/30 | train loss 0.4683 | val loss 0.4656 | val mIoU 0.7486 | best 0.7486 | 8s
+epoch  13/30 | train loss 0.4641 | val loss 0.4429 | val mIoU 0.7581 | best 0.7581 | 8s
+epoch  14/30 | train loss 0.4683 | val loss 0.4542 | val mIoU 0.7495 | best 0.7581 | 8s
+epoch  15/30 | train loss 0.4664 | val loss 0.4482 | val mIoU 0.7545 | best 0.7581 | 9s
+epoch  16/30 | train loss 0.4523 | val loss 0.4493 | val mIoU 0.7532 | best 0.7581 | 8s
+epoch  17/30 | train loss 0.4469 | val loss 0.4401 | val mIoU 0.7596 | best 0.7596 | 8s
+epoch  18/30 | train loss 0.4504 | val loss 0.4307 | val mIoU 0.7630 | best 0.7630 | 8s
+epoch  19/30 | train loss 0.4454 | val loss 0.4488 | val mIoU 0.7577 | best 0.7630 | 8s
+epoch  20/30 | train loss 0.4398 | val loss 0.4487 | val mIoU 0.7578 | best 0.7630 | 8s
+epoch  21/30 | train loss 0.4465 | val loss 0.4561 | val mIoU 0.7534 | best 0.7630 | 8s
+epoch  22/30 | train loss 0.4432 | val loss 0.4447 | val mIoU 0.7591 | best 0.7630 | 9s
+epoch  23/30 | train loss 0.4453 | val loss 0.4520 | val mIoU 0.7536 | best 0.7630 | 9s
+epoch  24/30 | train loss 0.4393 | val loss 0.4464 | val mIoU 0.7577 | best 0.7630 | 9s
+epoch  25/30 | train loss 0.4407 | val loss 0.4468 | val mIoU 0.7594 | best 0.7630 | 8s
+epoch  26/30 | train loss 0.4485 | val loss 0.4410 | val mIoU 0.7606 | best 0.7630 | 8s
+epoch  27/30 | train loss 0.4392 | val loss 0.4491 | val mIoU 0.7563 | best 0.7630 | 8s
+epoch  28/30 | train loss 0.4324 | val loss 0.4492 | val mIoU 0.7558 | best 0.7630 | 9s
+epoch  29/30 | train loss 0.4410 | val loss 0.4413 | val mIoU 0.7602 | best 0.7630 | 8s
+epoch  30/30 | train loss 0.4327 | val loss 0.4388 | val mIoU 0.7598 | best 0.7630 | 8s
+decoder0.5_heads0.5_residual40.25: val 0.7630 (epoch 18) | test 0.6775 (before ft 0.2433) | params 2.621M | 2.40 GMACs | fp32 6.91 ms | compile 2.53 ms
+
+| Pruning | Shape | Params, M | GMACs | mIoU test before ft | mIoU val (best) | mIoU test | Latency fp32, ms | Latency fp16+compile, ms |
+|---|---|---|---|---|---|---|---|---|
+| none | original | 3.717 | 4.94 | 0.6912 | 0.7739 | 0.6910 | 8.14 | 3.39 |
+| decoder:0.25 | linear_c 192/192/192/192, width 192 | 3.568 | 3.65 | 0.6479 | 0.7691 | 0.6875 | 7.77 | 2.99 |
+| decoder:0.5 | linear_c 128/128/128/128, width 128 | 3.453 | 2.71 | 0.2777 | 0.7672 | 0.6906 | 6.93 | 2.61 |
+| mlp:0.25 | Mix-FFN hidden 96/192/480/768 | 3.321 | 4.72 | 0.6247 | 0.7626 | 0.6803 | 8.14 | 3.23 |
+| heads:0.5,residual4:0.25 | heads 1/1/2/4; stage4 C 192 | 2.877 | 4.62 | 0.5838 | 0.7686 | 0.6850 | 8.17 | 3.33 |
+| decoder:0.5,heads:0.5,residual4:0.25 | linear_c 128/128/128/128, width 128; heads 1/1/2/4; stage4 C 192 | 2.621 | 2.40 | 0.2433 | 0.7630 | 0.6775 | 6.91 | 2.53 |
+
+Saved: /home/magic/work_task/segformer-camvid/pruning/results/finetune.md
